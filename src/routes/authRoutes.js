@@ -3,7 +3,7 @@ import {
   registerValidator,
   loginValidator,
 } from "../validator/authValidator.js";
-import { validationResult } from "express-validator";
+import handleValidationError from "../validator/handleValidator.js";
 import AuthController from "../controller/authController.js";
 
 class AuthRouter {
@@ -15,7 +15,7 @@ class AuthRouter {
     router.post(
       "/register",
       registerValidator,
-      this.handleValidationError,
+      handleValidationError,
       AuthController.register
     );
 
@@ -23,7 +23,7 @@ class AuthRouter {
     router.post(
       "/login",
       loginValidator,
-      this.handleValidationError,
+      handleValidationError,
       AuthController.login
     );
 
@@ -31,17 +31,6 @@ class AuthRouter {
     router.post("/logout", AuthController.logout);
 
     return router;
-  }
-
-  // Static method untuk menangani error validasi
-  static handleValidationError(req, res, next) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-      });
-    }
-    next();
   }
 }
 

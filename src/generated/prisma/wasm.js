@@ -132,7 +132,7 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.VehicleScalarFieldEnum = {
   id: 'id',
-  licensePlat: 'licensePlat',
+  platNumber: 'platNumber',
   model: 'model',
   brand: 'brand',
   userId: 'userId'
@@ -172,7 +172,7 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.VehicleOrderByRelevanceFieldEnum = {
-  licensePlat: 'licensePlat',
+  platNumber: 'platNumber',
   model: 'model',
   brand: 'brand'
 };

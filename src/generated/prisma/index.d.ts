@@ -2274,7 +2274,7 @@ export namespace Prisma {
 
   export type VehicleMinAggregateOutputType = {
     id: number | null
-    licensePlat: string | null
+    platNumber: string | null
     model: string | null
     brand: string | null
     userId: number | null
@@ -2282,7 +2282,7 @@ export namespace Prisma {
 
   export type VehicleMaxAggregateOutputType = {
     id: number | null
-    licensePlat: string | null
+    platNumber: string | null
     model: string | null
     brand: string | null
     userId: number | null
@@ -2290,7 +2290,7 @@ export namespace Prisma {
 
   export type VehicleCountAggregateOutputType = {
     id: number
-    licensePlat: number
+    platNumber: number
     model: number
     brand: number
     userId: number
@@ -2310,7 +2310,7 @@ export namespace Prisma {
 
   export type VehicleMinAggregateInputType = {
     id?: true
-    licensePlat?: true
+    platNumber?: true
     model?: true
     brand?: true
     userId?: true
@@ -2318,7 +2318,7 @@ export namespace Prisma {
 
   export type VehicleMaxAggregateInputType = {
     id?: true
-    licensePlat?: true
+    platNumber?: true
     model?: true
     brand?: true
     userId?: true
@@ -2326,7 +2326,7 @@ export namespace Prisma {
 
   export type VehicleCountAggregateInputType = {
     id?: true
-    licensePlat?: true
+    platNumber?: true
     model?: true
     brand?: true
     userId?: true
@@ -2421,7 +2421,7 @@ export namespace Prisma {
 
   export type VehicleGroupByOutputType = {
     id: number
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     userId: number
@@ -2448,7 +2448,7 @@ export namespace Prisma {
 
   export type VehicleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    licensePlat?: boolean
+    platNumber?: boolean
     model?: boolean
     brand?: boolean
     userId?: boolean
@@ -2461,13 +2461,13 @@ export namespace Prisma {
 
   export type VehicleSelectScalar = {
     id?: boolean
-    licensePlat?: boolean
+    platNumber?: boolean
     model?: boolean
     brand?: boolean
     userId?: boolean
   }
 
-  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "licensePlat" | "model" | "brand" | "userId", ExtArgs["result"]["vehicle"]>
+  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platNumber" | "model" | "brand" | "userId", ExtArgs["result"]["vehicle"]>
   export type VehicleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     trips?: boolean | Vehicle$tripsArgs<ExtArgs>
@@ -2482,7 +2482,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      licensePlat: string
+      platNumber: string
       model: string
       brand: string
       userId: number
@@ -2858,7 +2858,7 @@ export namespace Prisma {
    */
   interface VehicleFieldRefs {
     readonly id: FieldRef<"Vehicle", 'Int'>
-    readonly licensePlat: FieldRef<"Vehicle", 'String'>
+    readonly platNumber: FieldRef<"Vehicle", 'String'>
     readonly model: FieldRef<"Vehicle", 'String'>
     readonly brand: FieldRef<"Vehicle", 'String'>
     readonly userId: FieldRef<"Vehicle", 'Int'>
@@ -5256,7 +5256,7 @@ export namespace Prisma {
 
   export const VehicleScalarFieldEnum: {
     id: 'id',
-    licensePlat: 'licensePlat',
+    platNumber: 'platNumber',
     model: 'model',
     brand: 'brand',
     userId: 'userId'
@@ -5314,7 +5314,7 @@ export namespace Prisma {
 
 
   export const VehicleOrderByRelevanceFieldEnum: {
-    licensePlat: 'licensePlat',
+    platNumber: 'platNumber',
     model: 'model',
     brand: 'brand'
   };
@@ -5434,7 +5434,7 @@ export namespace Prisma {
     OR?: VehicleWhereInput[]
     NOT?: VehicleWhereInput | VehicleWhereInput[]
     id?: IntFilter<"Vehicle"> | number
-    licensePlat?: StringFilter<"Vehicle"> | string
+    platNumber?: StringFilter<"Vehicle"> | string
     model?: StringFilter<"Vehicle"> | string
     brand?: StringFilter<"Vehicle"> | string
     userId?: IntFilter<"Vehicle"> | number
@@ -5444,7 +5444,7 @@ export namespace Prisma {
 
   export type VehicleOrderByWithRelationInput = {
     id?: SortOrder
-    licensePlat?: SortOrder
+    platNumber?: SortOrder
     model?: SortOrder
     brand?: SortOrder
     userId?: SortOrder
@@ -5455,7 +5455,7 @@ export namespace Prisma {
 
   export type VehicleWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    licensePlat?: string
+    platNumber?: string
     AND?: VehicleWhereInput | VehicleWhereInput[]
     OR?: VehicleWhereInput[]
     NOT?: VehicleWhereInput | VehicleWhereInput[]
@@ -5464,11 +5464,11 @@ export namespace Prisma {
     userId?: IntFilter<"Vehicle"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     trips?: TripListRelationFilter
-  }, "id" | "licensePlat">
+  }, "id" | "platNumber">
 
   export type VehicleOrderByWithAggregationInput = {
     id?: SortOrder
-    licensePlat?: SortOrder
+    platNumber?: SortOrder
     model?: SortOrder
     brand?: SortOrder
     userId?: SortOrder
@@ -5484,7 +5484,7 @@ export namespace Prisma {
     OR?: VehicleScalarWhereWithAggregatesInput[]
     NOT?: VehicleScalarWhereWithAggregatesInput | VehicleScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Vehicle"> | number
-    licensePlat?: StringWithAggregatesFilter<"Vehicle"> | string
+    platNumber?: StringWithAggregatesFilter<"Vehicle"> | string
     model?: StringWithAggregatesFilter<"Vehicle"> | string
     brand?: StringWithAggregatesFilter<"Vehicle"> | string
     userId?: IntWithAggregatesFilter<"Vehicle"> | number
@@ -5686,7 +5686,7 @@ export namespace Prisma {
   }
 
   export type VehicleCreateInput = {
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     user: UserCreateNestedOneWithoutVehiclesInput
@@ -5695,7 +5695,7 @@ export namespace Prisma {
 
   export type VehicleUncheckedCreateInput = {
     id?: number
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     userId: number
@@ -5703,7 +5703,7 @@ export namespace Prisma {
   }
 
   export type VehicleUpdateInput = {
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVehiclesNestedInput
@@ -5712,7 +5712,7 @@ export namespace Prisma {
 
   export type VehicleUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -5721,21 +5721,21 @@ export namespace Prisma {
 
   export type VehicleCreateManyInput = {
     id?: number
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     userId: number
   }
 
   export type VehicleUpdateManyMutationInput = {
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
   }
 
   export type VehicleUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -6048,7 +6048,7 @@ export namespace Prisma {
 
   export type VehicleCountOrderByAggregateInput = {
     id?: SortOrder
-    licensePlat?: SortOrder
+    platNumber?: SortOrder
     model?: SortOrder
     brand?: SortOrder
     userId?: SortOrder
@@ -6061,7 +6061,7 @@ export namespace Prisma {
 
   export type VehicleMaxOrderByAggregateInput = {
     id?: SortOrder
-    licensePlat?: SortOrder
+    platNumber?: SortOrder
     model?: SortOrder
     brand?: SortOrder
     userId?: SortOrder
@@ -6069,7 +6069,7 @@ export namespace Prisma {
 
   export type VehicleMinOrderByAggregateInput = {
     id?: SortOrder
-    licensePlat?: SortOrder
+    platNumber?: SortOrder
     model?: SortOrder
     brand?: SortOrder
     userId?: SortOrder
@@ -6664,7 +6664,7 @@ export namespace Prisma {
   }
 
   export type VehicleCreateWithoutUserInput = {
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     trips?: TripCreateNestedManyWithoutVehicleInput
@@ -6672,7 +6672,7 @@ export namespace Prisma {
 
   export type VehicleUncheckedCreateWithoutUserInput = {
     id?: number
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     trips?: TripUncheckedCreateNestedManyWithoutVehicleInput
@@ -6734,7 +6734,7 @@ export namespace Prisma {
     OR?: VehicleScalarWhereInput[]
     NOT?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
     id?: IntFilter<"Vehicle"> | number
-    licensePlat?: StringFilter<"Vehicle"> | string
+    platNumber?: StringFilter<"Vehicle"> | string
     model?: StringFilter<"Vehicle"> | string
     brand?: StringFilter<"Vehicle"> | string
     userId?: IntFilter<"Vehicle"> | number
@@ -6916,7 +6916,7 @@ export namespace Prisma {
   }
 
   export type VehicleCreateWithoutTripsInput = {
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     user: UserCreateNestedOneWithoutVehiclesInput
@@ -6924,7 +6924,7 @@ export namespace Prisma {
 
   export type VehicleUncheckedCreateWithoutTripsInput = {
     id?: number
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
     userId: number
@@ -7006,7 +7006,7 @@ export namespace Prisma {
   }
 
   export type VehicleUpdateWithoutTripsInput = {
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVehiclesNestedInput
@@ -7014,7 +7014,7 @@ export namespace Prisma {
 
   export type VehicleUncheckedUpdateWithoutTripsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -7068,7 +7068,7 @@ export namespace Prisma {
 
   export type VehicleCreateManyUserInput = {
     id?: number
-    licensePlat: string
+    platNumber: string
     model: string
     brand: string
   }
@@ -7081,7 +7081,7 @@ export namespace Prisma {
   }
 
   export type VehicleUpdateWithoutUserInput = {
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     trips?: TripUpdateManyWithoutVehicleNestedInput
@@ -7089,7 +7089,7 @@ export namespace Prisma {
 
   export type VehicleUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
     trips?: TripUncheckedUpdateManyWithoutVehicleNestedInput
@@ -7097,7 +7097,7 @@ export namespace Prisma {
 
   export type VehicleUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    licensePlat?: StringFieldUpdateOperationsInput | string
+    platNumber?: StringFieldUpdateOperationsInput | string
     model?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
   }

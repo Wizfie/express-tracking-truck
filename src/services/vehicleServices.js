@@ -3,15 +3,20 @@ import {
   getAllVehicle,
   getVehicleById,
   addVehicle,
-} from "../model/vehicleModel";
+} from "../model/vehicleModel.js";
 
 class VehicleService {
   static async addVehicle(vehicle) {
     try {
       const newVehicle = await addVehicle(vehicle);
+
+      const exist = await findByPlatNumber(vehicle);
+      if (exist) {
+        throw new Error("Plate Sudah di gunakan");
+      }
       return newVehicle;
     } catch (error) {
-      throw new Error("Failed to add vehicle");
+      throw new Error("Failed to add vehicle" + error.message);
     }
   }
 
