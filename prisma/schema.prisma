@@ -37,8 +37,8 @@ model Trip {
   endTime   DateTime?
   userId    Int
   user      User      @relation(fields: [userId], references: [id])
-  location  Location[]
   vehicleId Int       // Menambahkan field untuk relasi dengan Vehicle
+  location  Location[]
   vehicle   Vehicle   @relation(fields: [vehicleId], references: [id]) // Relasi dengan Vehicle
 }
 
