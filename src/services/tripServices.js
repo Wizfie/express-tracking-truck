@@ -20,7 +20,7 @@ class TripService {
 
   static async getTripById(tripId) {
     try {
-      const trip = await getTripById(tripId);
+      const trip = await TripModel.getTripById(tripId);
       return trip;
     } catch (error) {
       throw new Error("Failed to get trip" + error.message);
@@ -29,7 +29,7 @@ class TripService {
 
   static async getAllTrips() {
     try {
-      const trips = await getAllTrips();
+      const trips = await TripModel.getAllTrips();
       return trips;
     } catch (error) {
       throw new Error("Failed to get all trips" + error.message);
@@ -38,7 +38,7 @@ class TripService {
 
   static async getTripsByUserId(userId) {
     try {
-      const trips = await getTripsByUserId(userId);
+      const trips = await TripModel.getTripsByUserId(userId);
       return trips;
     } catch (error) {
       throw new Error("Failed to get trips by user ID" + error.message);
@@ -47,7 +47,7 @@ class TripService {
 
   static async getTripsByVehicleId(vehicleId) {
     try {
-      const trips = await getTripsByVehicleId(vehicleId);
+      const trips = await TripModel.getTripsByVehicleId(parseInt(vehicleId));
       return trips;
     } catch (error) {
       throw new Error("Failed to get trips by vehicle ID" + error.message);

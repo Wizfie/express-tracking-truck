@@ -34,7 +34,7 @@ class TripController {
   static async getTripById(req, res) {
     const tripId = req.params.id;
     try {
-      const trip = await TripService.getTripById(tripId);
+      const trip = await TripService.getTripById(parseInt(tripId));
       res.status(200).json({
         message: "Trip fetched successfully",
         trip: trip,
@@ -46,7 +46,7 @@ class TripController {
     }
   }
 
-  static async getAllTrips(req, res) {
+  static async getAllTrips(_req, res) {
     try {
       const trips = await TripService.getAllTrips();
       res.status(200).json({

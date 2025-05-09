@@ -2,9 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
-import { clearBlackList } from "./utils/jwt.js"; // Import the function to clear the blacklist
+import { clearBlackList } from "./utils/jwt.js";
 import vehicleRoutes from "./routes/vehicleRoutes.js";
 import tripRoutes from "./routes/tripRoutes.js";
+import locationRoutes from "./routes/locationRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/vehicle", vehicleRoutes);
 app.use("/api/trip", tripRoutes);
+app.use("/api/location", locationRoutes);
 
 clearBlackList(); // Start the blacklist clearing process
 const PORT = process.env.PORT || 3000;
