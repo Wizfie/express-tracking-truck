@@ -2,7 +2,7 @@ import LocationController from "../controller/locationController.js";
 import express from "express";
 
 class LocationRoutes {
-  static setupRoutes(app) {
+  static setupRoutes() {
     const router = express.Router();
 
     router.post("/create", LocationController.addLocation);
