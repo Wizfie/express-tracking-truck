@@ -19,10 +19,8 @@ class AuthService {
       password: hashedPassword,
     });
 
-    const token = generateToken(newUser.id, newUser.username);
     return {
       user: newUser,
-      token,
     };
   }
 

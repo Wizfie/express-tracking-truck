@@ -30,6 +30,9 @@ class AuthRouter {
     // Rute untuk logout
     router.post("/logout", AuthController.logout);
 
+    // Rute untuk validasi session
+    router.get("/validate", AuthController.validateSession);
+
     return router;
   }
 }

@@ -2,7 +2,7 @@ import { body } from "express-validator";
 
 const registerValidator = [
   body("username")
-    .trim()
+    // .trim()
     .notEmpty()
     .isString()
     .withMessage("Username tidak boleh kosong")
@@ -10,7 +10,6 @@ const registerValidator = [
       min: 3,
       max: 10,
     })
-    .matches(/^[a-zA-Z0-9]+$/) // Hanya boleh mengandung huruf dan angka (tanpa simbol)
     .withMessage(
       "Username harus terdiri dari 3-20 karakter dan hanya boleh mengandung huruf dan angka"
     ),
