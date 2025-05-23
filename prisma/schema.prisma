@@ -24,8 +24,9 @@ model User {
 model Vehicle {
   id            Int    @id @default(autoincrement())
   platNumber    String @unique
-  model         String
-  brand         String
+  brand         String?
+  company       String?
+  type          String?
   userId        Int
   user          User   @relation(fields: [userId], references: [id])
   trips         Trip[] // Relasi dengan Trip model
@@ -34,7 +35,8 @@ model Vehicle {
 model Trip {
   id        Int       @id @default(autoincrement())
   startTime DateTime  @default(now())
-  endTime   DateTime?
+  endTime   DateTime? 
+  soNumber  String?
   userId    Int
   user      User      @relation(fields: [userId], references: [id])
   vehicleId Int       // Menambahkan field untuk relasi dengan Vehicle

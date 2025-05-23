@@ -1,6 +1,5 @@
-import { blacklistToken } from "../utils/jwt.js";
+import { blacklistToken, verifyToken } from "../utils/jwt.js";
 import AuthService from "../services/authServices.js";
-
 class AuthController {
   static async register(req, res) {
     const { username, password } = req.body;
@@ -55,12 +54,10 @@ class AuthController {
     if (!token) {
       return res.status(401).json({ valid: false, user: null });
     }
-    const { verifyToken } = await import("../utils/jwt.js");
     const decoded = verifyToken(token);
     if (!decoded) {
       return res.status(401).json({ valid: false, user: null });
     }
-    // Anda bisa ambil user dari DB jika perlu, di sini cukup return payload
     res.status(200).json({
       valid: true,
       user: { id: decoded.userId, username: decoded.username },

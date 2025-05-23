@@ -133,8 +133,9 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.VehicleScalarFieldEnum = {
   id: 'id',
   platNumber: 'platNumber',
-  model: 'model',
   brand: 'brand',
+  company: 'company',
+  type: 'type',
   userId: 'userId'
 };
 
@@ -142,6 +143,7 @@ exports.Prisma.TripScalarFieldEnum = {
   id: 'id',
   startTime: 'startTime',
   endTime: 'endTime',
+  soNumber: 'soNumber',
   userId: 'userId',
   vehicleId: 'vehicleId'
 };
@@ -173,8 +175,13 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
 
 exports.Prisma.VehicleOrderByRelevanceFieldEnum = {
   platNumber: 'platNumber',
-  model: 'model',
-  brand: 'brand'
+  brand: 'brand',
+  company: 'company',
+  type: 'type'
+};
+
+exports.Prisma.TripOrderByRelevanceFieldEnum = {
+  soNumber: 'soNumber'
 };
 
 

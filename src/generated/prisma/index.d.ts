@@ -2275,24 +2275,27 @@ export namespace Prisma {
   export type VehicleMinAggregateOutputType = {
     id: number | null
     platNumber: string | null
-    model: string | null
     brand: string | null
+    company: string | null
+    type: string | null
     userId: number | null
   }
 
   export type VehicleMaxAggregateOutputType = {
     id: number | null
     platNumber: string | null
-    model: string | null
     brand: string | null
+    company: string | null
+    type: string | null
     userId: number | null
   }
 
   export type VehicleCountAggregateOutputType = {
     id: number
     platNumber: number
-    model: number
     brand: number
+    company: number
+    type: number
     userId: number
     _all: number
   }
@@ -2311,24 +2314,27 @@ export namespace Prisma {
   export type VehicleMinAggregateInputType = {
     id?: true
     platNumber?: true
-    model?: true
     brand?: true
+    company?: true
+    type?: true
     userId?: true
   }
 
   export type VehicleMaxAggregateInputType = {
     id?: true
     platNumber?: true
-    model?: true
     brand?: true
+    company?: true
+    type?: true
     userId?: true
   }
 
   export type VehicleCountAggregateInputType = {
     id?: true
     platNumber?: true
-    model?: true
     brand?: true
+    company?: true
+    type?: true
     userId?: true
     _all?: true
   }
@@ -2422,8 +2428,9 @@ export namespace Prisma {
   export type VehicleGroupByOutputType = {
     id: number
     platNumber: string
-    model: string
-    brand: string
+    brand: string | null
+    company: string | null
+    type: string | null
     userId: number
     _count: VehicleCountAggregateOutputType | null
     _avg: VehicleAvgAggregateOutputType | null
@@ -2449,8 +2456,9 @@ export namespace Prisma {
   export type VehicleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     platNumber?: boolean
-    model?: boolean
     brand?: boolean
+    company?: boolean
+    type?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     trips?: boolean | Vehicle$tripsArgs<ExtArgs>
@@ -2462,12 +2470,13 @@ export namespace Prisma {
   export type VehicleSelectScalar = {
     id?: boolean
     platNumber?: boolean
-    model?: boolean
     brand?: boolean
+    company?: boolean
+    type?: boolean
     userId?: boolean
   }
 
-  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platNumber" | "model" | "brand" | "userId", ExtArgs["result"]["vehicle"]>
+  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platNumber" | "brand" | "company" | "type" | "userId", ExtArgs["result"]["vehicle"]>
   export type VehicleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     trips?: boolean | Vehicle$tripsArgs<ExtArgs>
@@ -2483,8 +2492,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       platNumber: string
-      model: string
-      brand: string
+      brand: string | null
+      company: string | null
+      type: string | null
       userId: number
     }, ExtArgs["result"]["vehicle"]>
     composites: {}
@@ -2859,8 +2869,9 @@ export namespace Prisma {
   interface VehicleFieldRefs {
     readonly id: FieldRef<"Vehicle", 'Int'>
     readonly platNumber: FieldRef<"Vehicle", 'String'>
-    readonly model: FieldRef<"Vehicle", 'String'>
     readonly brand: FieldRef<"Vehicle", 'String'>
+    readonly company: FieldRef<"Vehicle", 'String'>
+    readonly type: FieldRef<"Vehicle", 'String'>
     readonly userId: FieldRef<"Vehicle", 'Int'>
   }
     
@@ -3275,6 +3286,7 @@ export namespace Prisma {
     id: number | null
     startTime: Date | null
     endTime: Date | null
+    soNumber: string | null
     userId: number | null
     vehicleId: number | null
   }
@@ -3283,6 +3295,7 @@ export namespace Prisma {
     id: number | null
     startTime: Date | null
     endTime: Date | null
+    soNumber: string | null
     userId: number | null
     vehicleId: number | null
   }
@@ -3291,6 +3304,7 @@ export namespace Prisma {
     id: number
     startTime: number
     endTime: number
+    soNumber: number
     userId: number
     vehicleId: number
     _all: number
@@ -3313,6 +3327,7 @@ export namespace Prisma {
     id?: true
     startTime?: true
     endTime?: true
+    soNumber?: true
     userId?: true
     vehicleId?: true
   }
@@ -3321,6 +3336,7 @@ export namespace Prisma {
     id?: true
     startTime?: true
     endTime?: true
+    soNumber?: true
     userId?: true
     vehicleId?: true
   }
@@ -3329,6 +3345,7 @@ export namespace Prisma {
     id?: true
     startTime?: true
     endTime?: true
+    soNumber?: true
     userId?: true
     vehicleId?: true
     _all?: true
@@ -3424,6 +3441,7 @@ export namespace Prisma {
     id: number
     startTime: Date
     endTime: Date | null
+    soNumber: string | null
     userId: number
     vehicleId: number
     _count: TripCountAggregateOutputType | null
@@ -3451,6 +3469,7 @@ export namespace Prisma {
     id?: boolean
     startTime?: boolean
     endTime?: boolean
+    soNumber?: boolean
     userId?: boolean
     vehicleId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3465,11 +3484,12 @@ export namespace Prisma {
     id?: boolean
     startTime?: boolean
     endTime?: boolean
+    soNumber?: boolean
     userId?: boolean
     vehicleId?: boolean
   }
 
-  export type TripOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startTime" | "endTime" | "userId" | "vehicleId", ExtArgs["result"]["trip"]>
+  export type TripOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startTime" | "endTime" | "soNumber" | "userId" | "vehicleId", ExtArgs["result"]["trip"]>
   export type TripInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     location?: boolean | Trip$locationArgs<ExtArgs>
@@ -3488,6 +3508,7 @@ export namespace Prisma {
       id: number
       startTime: Date
       endTime: Date | null
+      soNumber: string | null
       userId: number
       vehicleId: number
     }, ExtArgs["result"]["trip"]>
@@ -3865,6 +3886,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Trip", 'Int'>
     readonly startTime: FieldRef<"Trip", 'DateTime'>
     readonly endTime: FieldRef<"Trip", 'DateTime'>
+    readonly soNumber: FieldRef<"Trip", 'String'>
     readonly userId: FieldRef<"Trip", 'Int'>
     readonly vehicleId: FieldRef<"Trip", 'Int'>
   }
@@ -5257,8 +5279,9 @@ export namespace Prisma {
   export const VehicleScalarFieldEnum: {
     id: 'id',
     platNumber: 'platNumber',
-    model: 'model',
     brand: 'brand',
+    company: 'company',
+    type: 'type',
     userId: 'userId'
   };
 
@@ -5269,6 +5292,7 @@ export namespace Prisma {
     id: 'id',
     startTime: 'startTime',
     endTime: 'endTime',
+    soNumber: 'soNumber',
     userId: 'userId',
     vehicleId: 'vehicleId'
   };
@@ -5315,11 +5339,19 @@ export namespace Prisma {
 
   export const VehicleOrderByRelevanceFieldEnum: {
     platNumber: 'platNumber',
-    model: 'model',
-    brand: 'brand'
+    brand: 'brand',
+    company: 'company',
+    type: 'type'
   };
 
   export type VehicleOrderByRelevanceFieldEnum = (typeof VehicleOrderByRelevanceFieldEnum)[keyof typeof VehicleOrderByRelevanceFieldEnum]
+
+
+  export const TripOrderByRelevanceFieldEnum: {
+    soNumber: 'soNumber'
+  };
+
+  export type TripOrderByRelevanceFieldEnum = (typeof TripOrderByRelevanceFieldEnum)[keyof typeof TripOrderByRelevanceFieldEnum]
 
 
   /**
@@ -5435,8 +5467,9 @@ export namespace Prisma {
     NOT?: VehicleWhereInput | VehicleWhereInput[]
     id?: IntFilter<"Vehicle"> | number
     platNumber?: StringFilter<"Vehicle"> | string
-    model?: StringFilter<"Vehicle"> | string
-    brand?: StringFilter<"Vehicle"> | string
+    brand?: StringNullableFilter<"Vehicle"> | string | null
+    company?: StringNullableFilter<"Vehicle"> | string | null
+    type?: StringNullableFilter<"Vehicle"> | string | null
     userId?: IntFilter<"Vehicle"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     trips?: TripListRelationFilter
@@ -5445,8 +5478,9 @@ export namespace Prisma {
   export type VehicleOrderByWithRelationInput = {
     id?: SortOrder
     platNumber?: SortOrder
-    model?: SortOrder
-    brand?: SortOrder
+    brand?: SortOrderInput | SortOrder
+    company?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
     trips?: TripOrderByRelationAggregateInput
@@ -5459,8 +5493,9 @@ export namespace Prisma {
     AND?: VehicleWhereInput | VehicleWhereInput[]
     OR?: VehicleWhereInput[]
     NOT?: VehicleWhereInput | VehicleWhereInput[]
-    model?: StringFilter<"Vehicle"> | string
-    brand?: StringFilter<"Vehicle"> | string
+    brand?: StringNullableFilter<"Vehicle"> | string | null
+    company?: StringNullableFilter<"Vehicle"> | string | null
+    type?: StringNullableFilter<"Vehicle"> | string | null
     userId?: IntFilter<"Vehicle"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     trips?: TripListRelationFilter
@@ -5469,8 +5504,9 @@ export namespace Prisma {
   export type VehicleOrderByWithAggregationInput = {
     id?: SortOrder
     platNumber?: SortOrder
-    model?: SortOrder
-    brand?: SortOrder
+    brand?: SortOrderInput | SortOrder
+    company?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
     userId?: SortOrder
     _count?: VehicleCountOrderByAggregateInput
     _avg?: VehicleAvgOrderByAggregateInput
@@ -5485,8 +5521,9 @@ export namespace Prisma {
     NOT?: VehicleScalarWhereWithAggregatesInput | VehicleScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Vehicle"> | number
     platNumber?: StringWithAggregatesFilter<"Vehicle"> | string
-    model?: StringWithAggregatesFilter<"Vehicle"> | string
-    brand?: StringWithAggregatesFilter<"Vehicle"> | string
+    brand?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    company?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    type?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
     userId?: IntWithAggregatesFilter<"Vehicle"> | number
   }
 
@@ -5497,6 +5534,7 @@ export namespace Prisma {
     id?: IntFilter<"Trip"> | number
     startTime?: DateTimeFilter<"Trip"> | Date | string
     endTime?: DateTimeNullableFilter<"Trip"> | Date | string | null
+    soNumber?: StringNullableFilter<"Trip"> | string | null
     userId?: IntFilter<"Trip"> | number
     vehicleId?: IntFilter<"Trip"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -5508,11 +5546,13 @@ export namespace Prisma {
     id?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
+    soNumber?: SortOrderInput | SortOrder
     userId?: SortOrder
     vehicleId?: SortOrder
     user?: UserOrderByWithRelationInput
     location?: LocationOrderByRelationAggregateInput
     vehicle?: VehicleOrderByWithRelationInput
+    _relevance?: TripOrderByRelevanceInput
   }
 
   export type TripWhereUniqueInput = Prisma.AtLeast<{
@@ -5522,6 +5562,7 @@ export namespace Prisma {
     NOT?: TripWhereInput | TripWhereInput[]
     startTime?: DateTimeFilter<"Trip"> | Date | string
     endTime?: DateTimeNullableFilter<"Trip"> | Date | string | null
+    soNumber?: StringNullableFilter<"Trip"> | string | null
     userId?: IntFilter<"Trip"> | number
     vehicleId?: IntFilter<"Trip"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -5533,6 +5574,7 @@ export namespace Prisma {
     id?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
+    soNumber?: SortOrderInput | SortOrder
     userId?: SortOrder
     vehicleId?: SortOrder
     _count?: TripCountOrderByAggregateInput
@@ -5549,6 +5591,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Trip"> | number
     startTime?: DateTimeWithAggregatesFilter<"Trip"> | Date | string
     endTime?: DateTimeNullableWithAggregatesFilter<"Trip"> | Date | string | null
+    soNumber?: StringNullableWithAggregatesFilter<"Trip"> | string | null
     userId?: IntWithAggregatesFilter<"Trip"> | number
     vehicleId?: IntWithAggregatesFilter<"Trip"> | number
   }
@@ -5687,8 +5730,9 @@ export namespace Prisma {
 
   export type VehicleCreateInput = {
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
     user: UserCreateNestedOneWithoutVehiclesInput
     trips?: TripCreateNestedManyWithoutVehicleInput
   }
@@ -5696,16 +5740,18 @@ export namespace Prisma {
   export type VehicleUncheckedCreateInput = {
     id?: number
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
     userId: number
     trips?: TripUncheckedCreateNestedManyWithoutVehicleInput
   }
 
   export type VehicleUpdateInput = {
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutVehiclesNestedInput
     trips?: TripUpdateManyWithoutVehicleNestedInput
   }
@@ -5713,8 +5759,9 @@ export namespace Prisma {
   export type VehicleUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     trips?: TripUncheckedUpdateManyWithoutVehicleNestedInput
   }
@@ -5722,28 +5769,32 @@ export namespace Prisma {
   export type VehicleCreateManyInput = {
     id?: number
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
     userId: number
   }
 
   export type VehicleUpdateManyMutationInput = {
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type VehicleUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TripCreateInput = {
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     user: UserCreateNestedOneWithoutTripsInput
     location?: LocationCreateNestedManyWithoutTripInput
     vehicle: VehicleCreateNestedOneWithoutTripsInput
@@ -5753,6 +5804,7 @@ export namespace Prisma {
     id?: number
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     userId: number
     vehicleId: number
     location?: LocationUncheckedCreateNestedManyWithoutTripInput
@@ -5761,6 +5813,7 @@ export namespace Prisma {
   export type TripUpdateInput = {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutTripsNestedInput
     location?: LocationUpdateManyWithoutTripNestedInput
     vehicle?: VehicleUpdateOneRequiredWithoutTripsNestedInput
@@ -5770,6 +5823,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     vehicleId?: IntFieldUpdateOperationsInput | number
     location?: LocationUncheckedUpdateManyWithoutTripNestedInput
@@ -5779,6 +5833,7 @@ export namespace Prisma {
     id?: number
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     userId: number
     vehicleId: number
   }
@@ -5786,12 +5841,14 @@ export namespace Prisma {
   export type TripUpdateManyMutationInput = {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     vehicleId?: IntFieldUpdateOperationsInput | number
   }
@@ -6049,8 +6106,9 @@ export namespace Prisma {
   export type VehicleCountOrderByAggregateInput = {
     id?: SortOrder
     platNumber?: SortOrder
-    model?: SortOrder
     brand?: SortOrder
+    company?: SortOrder
+    type?: SortOrder
     userId?: SortOrder
   }
 
@@ -6062,16 +6120,18 @@ export namespace Prisma {
   export type VehicleMaxOrderByAggregateInput = {
     id?: SortOrder
     platNumber?: SortOrder
-    model?: SortOrder
     brand?: SortOrder
+    company?: SortOrder
+    type?: SortOrder
     userId?: SortOrder
   }
 
   export type VehicleMinOrderByAggregateInput = {
     id?: SortOrder
     platNumber?: SortOrder
-    model?: SortOrder
     brand?: SortOrder
+    company?: SortOrder
+    type?: SortOrder
     userId?: SortOrder
   }
 
@@ -6106,10 +6166,17 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type TripOrderByRelevanceInput = {
+    fields: TripOrderByRelevanceFieldEnum | TripOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type TripCountOrderByAggregateInput = {
     id?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    soNumber?: SortOrder
     userId?: SortOrder
     vehicleId?: SortOrder
   }
@@ -6124,6 +6191,7 @@ export namespace Prisma {
     id?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    soNumber?: SortOrder
     userId?: SortOrder
     vehicleId?: SortOrder
   }
@@ -6132,6 +6200,7 @@ export namespace Prisma {
     id?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    soNumber?: SortOrder
     userId?: SortOrder
     vehicleId?: SortOrder
   }
@@ -6665,16 +6734,18 @@ export namespace Prisma {
 
   export type VehicleCreateWithoutUserInput = {
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
     trips?: TripCreateNestedManyWithoutVehicleInput
   }
 
   export type VehicleUncheckedCreateWithoutUserInput = {
     id?: number
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
     trips?: TripUncheckedCreateNestedManyWithoutVehicleInput
   }
 
@@ -6691,6 +6762,7 @@ export namespace Prisma {
   export type TripCreateWithoutUserInput = {
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     location?: LocationCreateNestedManyWithoutTripInput
     vehicle: VehicleCreateNestedOneWithoutTripsInput
   }
@@ -6699,6 +6771,7 @@ export namespace Prisma {
     id?: number
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     vehicleId: number
     location?: LocationUncheckedCreateNestedManyWithoutTripInput
   }
@@ -6735,8 +6808,9 @@ export namespace Prisma {
     NOT?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
     id?: IntFilter<"Vehicle"> | number
     platNumber?: StringFilter<"Vehicle"> | string
-    model?: StringFilter<"Vehicle"> | string
-    brand?: StringFilter<"Vehicle"> | string
+    brand?: StringNullableFilter<"Vehicle"> | string | null
+    company?: StringNullableFilter<"Vehicle"> | string | null
+    type?: StringNullableFilter<"Vehicle"> | string | null
     userId?: IntFilter<"Vehicle"> | number
   }
 
@@ -6763,6 +6837,7 @@ export namespace Prisma {
     id?: IntFilter<"Trip"> | number
     startTime?: DateTimeFilter<"Trip"> | Date | string
     endTime?: DateTimeNullableFilter<"Trip"> | Date | string | null
+    soNumber?: StringNullableFilter<"Trip"> | string | null
     userId?: IntFilter<"Trip"> | number
     vehicleId?: IntFilter<"Trip"> | number
   }
@@ -6796,6 +6871,7 @@ export namespace Prisma {
   export type TripCreateWithoutVehicleInput = {
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     user: UserCreateNestedOneWithoutTripsInput
     location?: LocationCreateNestedManyWithoutTripInput
   }
@@ -6804,6 +6880,7 @@ export namespace Prisma {
     id?: number
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     userId: number
     location?: LocationUncheckedCreateNestedManyWithoutTripInput
   }
@@ -6917,16 +6994,18 @@ export namespace Prisma {
 
   export type VehicleCreateWithoutTripsInput = {
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
     user: UserCreateNestedOneWithoutVehiclesInput
   }
 
   export type VehicleUncheckedCreateWithoutTripsInput = {
     id?: number
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
     userId: number
   }
 
@@ -7007,22 +7086,25 @@ export namespace Prisma {
 
   export type VehicleUpdateWithoutTripsInput = {
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutVehiclesNestedInput
   }
 
   export type VehicleUncheckedUpdateWithoutTripsInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TripCreateWithoutLocationInput = {
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     user: UserCreateNestedOneWithoutTripsInput
     vehicle: VehicleCreateNestedOneWithoutTripsInput
   }
@@ -7031,6 +7113,7 @@ export namespace Prisma {
     id?: number
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     userId: number
     vehicleId: number
   }
@@ -7054,6 +7137,7 @@ export namespace Prisma {
   export type TripUpdateWithoutLocationInput = {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutTripsNestedInput
     vehicle?: VehicleUpdateOneRequiredWithoutTripsNestedInput
   }
@@ -7062,6 +7146,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     vehicleId?: IntFieldUpdateOperationsInput | number
   }
@@ -7069,42 +7154,48 @@ export namespace Prisma {
   export type VehicleCreateManyUserInput = {
     id?: number
     platNumber: string
-    model: string
-    brand: string
+    brand?: string | null
+    company?: string | null
+    type?: string | null
   }
 
   export type TripCreateManyUserInput = {
     id?: number
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     vehicleId: number
   }
 
   export type VehicleUpdateWithoutUserInput = {
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     trips?: TripUpdateManyWithoutVehicleNestedInput
   }
 
   export type VehicleUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     trips?: TripUncheckedUpdateManyWithoutVehicleNestedInput
   }
 
   export type VehicleUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    model?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
+    brand?: NullableStringFieldUpdateOperationsInput | string | null
+    company?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripUpdateWithoutUserInput = {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     location?: LocationUpdateManyWithoutTripNestedInput
     vehicle?: VehicleUpdateOneRequiredWithoutTripsNestedInput
   }
@@ -7113,6 +7204,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: IntFieldUpdateOperationsInput | number
     location?: LocationUncheckedUpdateManyWithoutTripNestedInput
   }
@@ -7121,6 +7213,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     vehicleId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -7128,12 +7221,14 @@ export namespace Prisma {
     id?: number
     startTime?: Date | string
     endTime?: Date | string | null
+    soNumber?: string | null
     userId: number
   }
 
   export type TripUpdateWithoutVehicleInput = {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutTripsNestedInput
     location?: LocationUpdateManyWithoutTripNestedInput
   }
@@ -7142,6 +7237,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
     location?: LocationUncheckedUpdateManyWithoutTripNestedInput
   }
@@ -7150,6 +7246,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
   }
 

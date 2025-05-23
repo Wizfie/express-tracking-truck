@@ -52,4 +52,10 @@ const verifyAuth = (req, res, next) => {
   next();
 };
 
-export { generateToken, verifyAuth, blacklistToken, clearBlackList };
+export {
+  generateToken,
+  verifyAuth,
+  blacklistToken,
+  clearBlackList,
+  verifyToken,
+};
