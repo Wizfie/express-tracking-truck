@@ -28,10 +28,11 @@ class AuthController {
         password,
       });
       // Set token as httpOnly cookie
+      const isProduction = process.env.NODE_ENV === "production";
       res.cookie("authToken", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax", // none di production, lax di dev
         maxAge: 24 * 60 * 60 * 1000, // 1 day
       });
       res.status(200).json({
