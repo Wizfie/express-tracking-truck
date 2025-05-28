@@ -7,6 +7,7 @@ import vehicleRoutes from "./routes/vehicleRoutes.js";
 import tripRoutes from "./routes/tripRoutes.js";
 import locationRoutes from "./routes/locationRoutes.js";
 import cookieParser from "cookie-parser";
+import pushRoutes from "./routes/pushRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -50,6 +51,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/vehicle", vehicleRoutes);
 app.use("/api/trip", tripRoutes);
 app.use("/api/location", locationRoutes);
+app.use("/api", pushRoutes);
 
 clearBlackList(); // Start the blacklist clearing process
 const PORT = process.env.PORT || 3000;
