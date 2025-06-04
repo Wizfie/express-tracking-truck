@@ -8,8 +8,8 @@ const addVehicle = async (vehicleData) => {
 };
 
 const findByPlatNumber = async (platNumber) => {
-  return await prisma.findUnique({
-    data: platNumber,
+  return await prisma.vehicle.findUnique({
+    where: { platNumber },
   });
 };
 

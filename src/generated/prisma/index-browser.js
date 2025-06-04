@@ -126,8 +126,10 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   phone: 'phone',
   email: 'email',
+  role: 'role',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  company: 'company'
 };
 
 exports.Prisma.VehicleScalarFieldEnum = {
@@ -135,8 +137,7 @@ exports.Prisma.VehicleScalarFieldEnum = {
   platNumber: 'platNumber',
   brand: 'brand',
   company: 'company',
-  type: 'type',
-  userId: 'userId'
+  type: 'type'
 };
 
 exports.Prisma.TripScalarFieldEnum = {
@@ -145,6 +146,7 @@ exports.Prisma.TripScalarFieldEnum = {
   endTime: 'endTime',
   soNumber: 'soNumber',
   userId: 'userId',
+  status: 'status',
   vehicleId: 'vehicleId'
 };
 
@@ -170,7 +172,8 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   username: 'username',
   password: 'password',
   phone: 'phone',
-  email: 'email'
+  email: 'email',
+  company: 'company'
 };
 
 exports.Prisma.VehicleOrderByRelevanceFieldEnum = {
@@ -183,7 +186,15 @@ exports.Prisma.VehicleOrderByRelevanceFieldEnum = {
 exports.Prisma.TripOrderByRelevanceFieldEnum = {
   soNumber: 'soNumber'
 };
+exports.Role = exports.$Enums.Role = {
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+};
 
+exports.Status = exports.$Enums.Status = {
+  ACTIVE: 'ACTIVE',
+  FINISH: 'FINISH'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',

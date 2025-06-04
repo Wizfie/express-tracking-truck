@@ -67,6 +67,21 @@ class VehicleController {
       });
     }
   }
+
+  static async searchVehicle(req, res) {
+    const { q } = req.query;
+    try {
+      const vehicles = await VehicleService.searchVehicle(q);
+      res.status(200).json({
+        message: "Vehicles search result",
+        vehicles,
+      });
+    } catch (error) {
+      res.status(400).json({
+        error: error.message,
+      });
+    }
+  }
 }
 
 export default VehicleController;

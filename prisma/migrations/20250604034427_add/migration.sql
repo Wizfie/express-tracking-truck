@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `trip` ADD COLUMN `status` ENUM('ACTIVE', 'FINISH') NOT NULL DEFAULT 'ACTIVE';

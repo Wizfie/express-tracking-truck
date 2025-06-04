@@ -35,6 +35,35 @@ export type Trip = $Result.DefaultSelection<Prisma.$TripPayload>
 export type Location = $Result.DefaultSelection<Prisma.$LocationPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Role: {
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const Status: {
+  ACTIVE: 'ACTIVE',
+  FINISH: 'FINISH'
+};
+
+export type Status = (typeof Status)[keyof typeof Status]
+
+}
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
+
+export type Status = $Enums.Status
+
+export const Status: typeof $Enums.Status
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1110,12 +1139,10 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    vehicles: number
     trips: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    vehicles?: boolean | UserCountOutputTypeCountVehiclesArgs
     trips?: boolean | UserCountOutputTypeCountTripsArgs
   }
 
@@ -1128,13 +1155,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountVehiclesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VehicleWhereInput
   }
 
   /**
@@ -1237,8 +1257,10 @@ export namespace Prisma {
     password: string | null
     phone: string | null
     email: string | null
+    role: $Enums.Role | null
     createdAt: Date | null
     updatedAt: Date | null
+    company: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1247,8 +1269,10 @@ export namespace Prisma {
     password: string | null
     phone: string | null
     email: string | null
+    role: $Enums.Role | null
     createdAt: Date | null
     updatedAt: Date | null
+    company: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1257,8 +1281,10 @@ export namespace Prisma {
     password: number
     phone: number
     email: number
+    role: number
     createdAt: number
     updatedAt: number
+    company: number
     _all: number
   }
 
@@ -1277,8 +1303,10 @@ export namespace Prisma {
     password?: true
     phone?: true
     email?: true
+    role?: true
     createdAt?: true
     updatedAt?: true
+    company?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1287,8 +1315,10 @@ export namespace Prisma {
     password?: true
     phone?: true
     email?: true
+    role?: true
     createdAt?: true
     updatedAt?: true
+    company?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1297,8 +1327,10 @@ export namespace Prisma {
     password?: true
     phone?: true
     email?: true
+    role?: true
     createdAt?: true
     updatedAt?: true
+    company?: true
     _all?: true
   }
 
@@ -1394,8 +1426,10 @@ export namespace Prisma {
     password: string
     phone: string | null
     email: string | null
+    role: $Enums.Role
     createdAt: Date
     updatedAt: Date
+    company: string | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1423,9 +1457,10 @@ export namespace Prisma {
     password?: boolean
     phone?: boolean
     email?: boolean
+    role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    vehicles?: boolean | User$vehiclesArgs<ExtArgs>
+    company?: boolean
     trips?: boolean | User$tripsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1438,13 +1473,14 @@ export namespace Prisma {
     password?: boolean
     phone?: boolean
     email?: boolean
+    role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    company?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "phone" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "phone" | "email" | "role" | "createdAt" | "updatedAt" | "company", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    vehicles?: boolean | User$vehiclesArgs<ExtArgs>
     trips?: boolean | User$tripsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1452,7 +1488,6 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      vehicles: Prisma.$VehiclePayload<ExtArgs>[]
       trips: Prisma.$TripPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -1461,8 +1496,10 @@ export namespace Prisma {
       password: string
       phone: string | null
       email: string | null
+      role: $Enums.Role
       createdAt: Date
       updatedAt: Date
+      company: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1803,7 +1840,6 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    vehicles<T extends User$vehiclesArgs<ExtArgs> = {}>(args?: Subset<T, User$vehiclesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     trips<T extends User$tripsArgs<ExtArgs> = {}>(args?: Subset<T, User$tripsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TripPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1839,8 +1875,10 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'Role'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly company: FieldRef<"User", 'String'>
   }
     
 
@@ -2184,30 +2222,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.vehicles
-   */
-  export type User$vehiclesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Vehicle
-     */
-    select?: VehicleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Vehicle
-     */
-    omit?: VehicleOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VehicleInclude<ExtArgs> | null
-    where?: VehicleWhereInput
-    orderBy?: VehicleOrderByWithRelationInput | VehicleOrderByWithRelationInput[]
-    cursor?: VehicleWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VehicleScalarFieldEnum | VehicleScalarFieldEnum[]
-  }
-
-  /**
    * User.trips
    */
   export type User$tripsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2264,12 +2278,10 @@ export namespace Prisma {
 
   export type VehicleAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type VehicleSumAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type VehicleMinAggregateOutputType = {
@@ -2278,7 +2290,6 @@ export namespace Prisma {
     brand: string | null
     company: string | null
     type: string | null
-    userId: number | null
   }
 
   export type VehicleMaxAggregateOutputType = {
@@ -2287,7 +2298,6 @@ export namespace Prisma {
     brand: string | null
     company: string | null
     type: string | null
-    userId: number | null
   }
 
   export type VehicleCountAggregateOutputType = {
@@ -2296,19 +2306,16 @@ export namespace Prisma {
     brand: number
     company: number
     type: number
-    userId: number
     _all: number
   }
 
 
   export type VehicleAvgAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type VehicleSumAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type VehicleMinAggregateInputType = {
@@ -2317,7 +2324,6 @@ export namespace Prisma {
     brand?: true
     company?: true
     type?: true
-    userId?: true
   }
 
   export type VehicleMaxAggregateInputType = {
@@ -2326,7 +2332,6 @@ export namespace Prisma {
     brand?: true
     company?: true
     type?: true
-    userId?: true
   }
 
   export type VehicleCountAggregateInputType = {
@@ -2335,7 +2340,6 @@ export namespace Prisma {
     brand?: true
     company?: true
     type?: true
-    userId?: true
     _all?: true
   }
 
@@ -2431,7 +2435,6 @@ export namespace Prisma {
     brand: string | null
     company: string | null
     type: string | null
-    userId: number
     _count: VehicleCountAggregateOutputType | null
     _avg: VehicleAvgAggregateOutputType | null
     _sum: VehicleSumAggregateOutputType | null
@@ -2459,8 +2462,6 @@ export namespace Prisma {
     brand?: boolean
     company?: boolean
     type?: boolean
-    userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
     trips?: boolean | Vehicle$tripsArgs<ExtArgs>
     _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vehicle"]>
@@ -2473,12 +2474,10 @@ export namespace Prisma {
     brand?: boolean
     company?: boolean
     type?: boolean
-    userId?: boolean
   }
 
-  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platNumber" | "brand" | "company" | "type" | "userId", ExtArgs["result"]["vehicle"]>
+  export type VehicleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "platNumber" | "brand" | "company" | "type", ExtArgs["result"]["vehicle"]>
   export type VehicleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
     trips?: boolean | Vehicle$tripsArgs<ExtArgs>
     _count?: boolean | VehicleCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2486,7 +2485,6 @@ export namespace Prisma {
   export type $VehiclePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Vehicle"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
       trips: Prisma.$TripPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2495,7 +2493,6 @@ export namespace Prisma {
       brand: string | null
       company: string | null
       type: string | null
-      userId: number
     }, ExtArgs["result"]["vehicle"]>
     composites: {}
   }
@@ -2836,7 +2833,6 @@ export namespace Prisma {
    */
   export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     trips<T extends Vehicle$tripsArgs<ExtArgs> = {}>(args?: Subset<T, Vehicle$tripsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TripPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2872,7 +2868,6 @@ export namespace Prisma {
     readonly brand: FieldRef<"Vehicle", 'String'>
     readonly company: FieldRef<"Vehicle", 'String'>
     readonly type: FieldRef<"Vehicle", 'String'>
-    readonly userId: FieldRef<"Vehicle", 'Int'>
   }
     
 
@@ -3288,6 +3283,7 @@ export namespace Prisma {
     endTime: Date | null
     soNumber: string | null
     userId: number | null
+    status: $Enums.Status | null
     vehicleId: number | null
   }
 
@@ -3297,6 +3293,7 @@ export namespace Prisma {
     endTime: Date | null
     soNumber: string | null
     userId: number | null
+    status: $Enums.Status | null
     vehicleId: number | null
   }
 
@@ -3306,6 +3303,7 @@ export namespace Prisma {
     endTime: number
     soNumber: number
     userId: number
+    status: number
     vehicleId: number
     _all: number
   }
@@ -3329,6 +3327,7 @@ export namespace Prisma {
     endTime?: true
     soNumber?: true
     userId?: true
+    status?: true
     vehicleId?: true
   }
 
@@ -3338,6 +3337,7 @@ export namespace Prisma {
     endTime?: true
     soNumber?: true
     userId?: true
+    status?: true
     vehicleId?: true
   }
 
@@ -3347,6 +3347,7 @@ export namespace Prisma {
     endTime?: true
     soNumber?: true
     userId?: true
+    status?: true
     vehicleId?: true
     _all?: true
   }
@@ -3443,6 +3444,7 @@ export namespace Prisma {
     endTime: Date | null
     soNumber: string | null
     userId: number
+    status: $Enums.Status
     vehicleId: number
     _count: TripCountAggregateOutputType | null
     _avg: TripAvgAggregateOutputType | null
@@ -3471,6 +3473,7 @@ export namespace Prisma {
     endTime?: boolean
     soNumber?: boolean
     userId?: boolean
+    status?: boolean
     vehicleId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     location?: boolean | Trip$locationArgs<ExtArgs>
@@ -3486,10 +3489,11 @@ export namespace Prisma {
     endTime?: boolean
     soNumber?: boolean
     userId?: boolean
+    status?: boolean
     vehicleId?: boolean
   }
 
-  export type TripOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startTime" | "endTime" | "soNumber" | "userId" | "vehicleId", ExtArgs["result"]["trip"]>
+  export type TripOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "startTime" | "endTime" | "soNumber" | "userId" | "status" | "vehicleId", ExtArgs["result"]["trip"]>
   export type TripInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     location?: boolean | Trip$locationArgs<ExtArgs>
@@ -3510,6 +3514,7 @@ export namespace Prisma {
       endTime: Date | null
       soNumber: string | null
       userId: number
+      status: $Enums.Status
       vehicleId: number
     }, ExtArgs["result"]["trip"]>
     composites: {}
@@ -3888,6 +3893,7 @@ export namespace Prisma {
     readonly endTime: FieldRef<"Trip", 'DateTime'>
     readonly soNumber: FieldRef<"Trip", 'String'>
     readonly userId: FieldRef<"Trip", 'Int'>
+    readonly status: FieldRef<"Trip", 'Status'>
     readonly vehicleId: FieldRef<"Trip", 'Int'>
   }
     
@@ -5269,8 +5275,10 @@ export namespace Prisma {
     password: 'password',
     phone: 'phone',
     email: 'email',
+    role: 'role',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    company: 'company'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -5281,8 +5289,7 @@ export namespace Prisma {
     platNumber: 'platNumber',
     brand: 'brand',
     company: 'company',
-    type: 'type',
-    userId: 'userId'
+    type: 'type'
   };
 
   export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
@@ -5294,6 +5301,7 @@ export namespace Prisma {
     endTime: 'endTime',
     soNumber: 'soNumber',
     userId: 'userId',
+    status: 'status',
     vehicleId: 'vehicleId'
   };
 
@@ -5331,7 +5339,8 @@ export namespace Prisma {
     username: 'username',
     password: 'password',
     phone: 'phone',
-    email: 'email'
+    email: 'email',
+    company: 'company'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -5374,9 +5383,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status'
+   */
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
     
 
 
@@ -5399,9 +5422,10 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     phone?: StringNullableFilter<"User"> | string | null
     email?: StringNullableFilter<"User"> | string | null
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    vehicles?: VehicleListRelationFilter
+    company?: StringNullableFilter<"User"> | string | null
     trips?: TripListRelationFilter
   }
 
@@ -5411,9 +5435,10 @@ export namespace Prisma {
     password?: SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    vehicles?: VehicleOrderByRelationAggregateInput
+    company?: SortOrderInput | SortOrder
     trips?: TripOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
@@ -5427,9 +5452,10 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     phone?: StringNullableFilter<"User"> | string | null
     email?: StringNullableFilter<"User"> | string | null
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    vehicles?: VehicleListRelationFilter
+    company?: StringNullableFilter<"User"> | string | null
     trips?: TripListRelationFilter
   }, "id" | "username">
 
@@ -5439,8 +5465,10 @@ export namespace Prisma {
     password?: SortOrder
     phone?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    company?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -5457,8 +5485,10 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     phone?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
+    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    company?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type VehicleWhereInput = {
@@ -5470,8 +5500,6 @@ export namespace Prisma {
     brand?: StringNullableFilter<"Vehicle"> | string | null
     company?: StringNullableFilter<"Vehicle"> | string | null
     type?: StringNullableFilter<"Vehicle"> | string | null
-    userId?: IntFilter<"Vehicle"> | number
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     trips?: TripListRelationFilter
   }
 
@@ -5481,8 +5509,6 @@ export namespace Prisma {
     brand?: SortOrderInput | SortOrder
     company?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    user?: UserOrderByWithRelationInput
     trips?: TripOrderByRelationAggregateInput
     _relevance?: VehicleOrderByRelevanceInput
   }
@@ -5496,8 +5522,6 @@ export namespace Prisma {
     brand?: StringNullableFilter<"Vehicle"> | string | null
     company?: StringNullableFilter<"Vehicle"> | string | null
     type?: StringNullableFilter<"Vehicle"> | string | null
-    userId?: IntFilter<"Vehicle"> | number
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     trips?: TripListRelationFilter
   }, "id" | "platNumber">
 
@@ -5507,7 +5531,6 @@ export namespace Prisma {
     brand?: SortOrderInput | SortOrder
     company?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
-    userId?: SortOrder
     _count?: VehicleCountOrderByAggregateInput
     _avg?: VehicleAvgOrderByAggregateInput
     _max?: VehicleMaxOrderByAggregateInput
@@ -5524,7 +5547,6 @@ export namespace Prisma {
     brand?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
     company?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
     type?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
-    userId?: IntWithAggregatesFilter<"Vehicle"> | number
   }
 
   export type TripWhereInput = {
@@ -5536,6 +5558,7 @@ export namespace Prisma {
     endTime?: DateTimeNullableFilter<"Trip"> | Date | string | null
     soNumber?: StringNullableFilter<"Trip"> | string | null
     userId?: IntFilter<"Trip"> | number
+    status?: EnumStatusFilter<"Trip"> | $Enums.Status
     vehicleId?: IntFilter<"Trip"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     location?: LocationListRelationFilter
@@ -5548,6 +5571,7 @@ export namespace Prisma {
     endTime?: SortOrderInput | SortOrder
     soNumber?: SortOrderInput | SortOrder
     userId?: SortOrder
+    status?: SortOrder
     vehicleId?: SortOrder
     user?: UserOrderByWithRelationInput
     location?: LocationOrderByRelationAggregateInput
@@ -5564,6 +5588,7 @@ export namespace Prisma {
     endTime?: DateTimeNullableFilter<"Trip"> | Date | string | null
     soNumber?: StringNullableFilter<"Trip"> | string | null
     userId?: IntFilter<"Trip"> | number
+    status?: EnumStatusFilter<"Trip"> | $Enums.Status
     vehicleId?: IntFilter<"Trip"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     location?: LocationListRelationFilter
@@ -5576,6 +5601,7 @@ export namespace Prisma {
     endTime?: SortOrderInput | SortOrder
     soNumber?: SortOrderInput | SortOrder
     userId?: SortOrder
+    status?: SortOrder
     vehicleId?: SortOrder
     _count?: TripCountOrderByAggregateInput
     _avg?: TripAvgOrderByAggregateInput
@@ -5593,6 +5619,7 @@ export namespace Prisma {
     endTime?: DateTimeNullableWithAggregatesFilter<"Trip"> | Date | string | null
     soNumber?: StringNullableWithAggregatesFilter<"Trip"> | string | null
     userId?: IntWithAggregatesFilter<"Trip"> | number
+    status?: EnumStatusWithAggregatesFilter<"Trip"> | $Enums.Status
     vehicleId?: IntWithAggregatesFilter<"Trip"> | number
   }
 
@@ -5658,9 +5685,10 @@ export namespace Prisma {
     password: string
     phone?: string | null
     email?: string | null
+    role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
-    vehicles?: VehicleCreateNestedManyWithoutUserInput
+    company?: string | null
     trips?: TripCreateNestedManyWithoutUserInput
   }
 
@@ -5670,9 +5698,10 @@ export namespace Prisma {
     password: string
     phone?: string | null
     email?: string | null
+    role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
-    vehicles?: VehicleUncheckedCreateNestedManyWithoutUserInput
+    company?: string | null
     trips?: TripUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -5681,9 +5710,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    vehicles?: VehicleUpdateManyWithoutUserNestedInput
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     trips?: TripUpdateManyWithoutUserNestedInput
   }
 
@@ -5693,9 +5723,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    vehicles?: VehicleUncheckedUpdateManyWithoutUserNestedInput
+    company?: NullableStringFieldUpdateOperationsInput | string | null
     trips?: TripUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -5705,8 +5736,10 @@ export namespace Prisma {
     password: string
     phone?: string | null
     email?: string | null
+    role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
+    company?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -5714,8 +5747,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -5724,8 +5759,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type VehicleCreateInput = {
@@ -5733,7 +5770,6 @@ export namespace Prisma {
     brand?: string | null
     company?: string | null
     type?: string | null
-    user: UserCreateNestedOneWithoutVehiclesInput
     trips?: TripCreateNestedManyWithoutVehicleInput
   }
 
@@ -5743,7 +5779,6 @@ export namespace Prisma {
     brand?: string | null
     company?: string | null
     type?: string | null
-    userId: number
     trips?: TripUncheckedCreateNestedManyWithoutVehicleInput
   }
 
@@ -5752,7 +5787,6 @@ export namespace Prisma {
     brand?: NullableStringFieldUpdateOperationsInput | string | null
     company?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutVehiclesNestedInput
     trips?: TripUpdateManyWithoutVehicleNestedInput
   }
 
@@ -5762,7 +5796,6 @@ export namespace Prisma {
     brand?: NullableStringFieldUpdateOperationsInput | string | null
     company?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
     trips?: TripUncheckedUpdateManyWithoutVehicleNestedInput
   }
 
@@ -5772,7 +5805,6 @@ export namespace Prisma {
     brand?: string | null
     company?: string | null
     type?: string | null
-    userId: number
   }
 
   export type VehicleUpdateManyMutationInput = {
@@ -5788,13 +5820,13 @@ export namespace Prisma {
     brand?: NullableStringFieldUpdateOperationsInput | string | null
     company?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TripCreateInput = {
     startTime?: Date | string
     endTime?: Date | string | null
     soNumber?: string | null
+    status?: $Enums.Status
     user: UserCreateNestedOneWithoutTripsInput
     location?: LocationCreateNestedManyWithoutTripInput
     vehicle: VehicleCreateNestedOneWithoutTripsInput
@@ -5806,6 +5838,7 @@ export namespace Prisma {
     endTime?: Date | string | null
     soNumber?: string | null
     userId: number
+    status?: $Enums.Status
     vehicleId: number
     location?: LocationUncheckedCreateNestedManyWithoutTripInput
   }
@@ -5814,6 +5847,7 @@ export namespace Prisma {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     user?: UserUpdateOneRequiredWithoutTripsNestedInput
     location?: LocationUpdateManyWithoutTripNestedInput
     vehicle?: VehicleUpdateOneRequiredWithoutTripsNestedInput
@@ -5825,6 +5859,7 @@ export namespace Prisma {
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     vehicleId?: IntFieldUpdateOperationsInput | number
     location?: LocationUncheckedUpdateManyWithoutTripNestedInput
   }
@@ -5835,6 +5870,7 @@ export namespace Prisma {
     endTime?: Date | string | null
     soNumber?: string | null
     userId: number
+    status?: $Enums.Status
     vehicleId: number
   }
 
@@ -5842,6 +5878,7 @@ export namespace Prisma {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type TripUncheckedUpdateManyInput = {
@@ -5850,6 +5887,7 @@ export namespace Prisma {
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     vehicleId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -5946,6 +5984,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[]
+    notIn?: $Enums.Role[]
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -5957,12 +6002,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type VehicleListRelationFilter = {
-    every?: VehicleWhereInput
-    some?: VehicleWhereInput
-    none?: VehicleWhereInput
-  }
-
   export type TripListRelationFilter = {
     every?: TripWhereInput
     some?: TripWhereInput
@@ -5972,10 +6011,6 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type VehicleOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type TripOrderByRelationAggregateInput = {
@@ -5994,8 +6029,10 @@ export namespace Prisma {
     password?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    company?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -6008,8 +6045,10 @@ export namespace Prisma {
     password?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    company?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -6018,8 +6057,10 @@ export namespace Prisma {
     password?: SortOrder
     phone?: SortOrder
     email?: SortOrder
+    role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    company?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -6078,6 +6119,16 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[]
+    notIn?: $Enums.Role[]
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6092,11 +6143,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
   export type VehicleOrderByRelevanceInput = {
     fields: VehicleOrderByRelevanceFieldEnum | VehicleOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -6109,12 +6155,10 @@ export namespace Prisma {
     brand?: SortOrder
     company?: SortOrder
     type?: SortOrder
-    userId?: SortOrder
   }
 
   export type VehicleAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type VehicleMaxOrderByAggregateInput = {
@@ -6123,7 +6167,6 @@ export namespace Prisma {
     brand?: SortOrder
     company?: SortOrder
     type?: SortOrder
-    userId?: SortOrder
   }
 
   export type VehicleMinOrderByAggregateInput = {
@@ -6132,12 +6175,10 @@ export namespace Prisma {
     brand?: SortOrder
     company?: SortOrder
     type?: SortOrder
-    userId?: SortOrder
   }
 
   export type VehicleSumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -6149,6 +6190,18 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type LocationListRelationFilter = {
@@ -6178,6 +6231,7 @@ export namespace Prisma {
     endTime?: SortOrder
     soNumber?: SortOrder
     userId?: SortOrder
+    status?: SortOrder
     vehicleId?: SortOrder
   }
 
@@ -6193,6 +6247,7 @@ export namespace Prisma {
     endTime?: SortOrder
     soNumber?: SortOrder
     userId?: SortOrder
+    status?: SortOrder
     vehicleId?: SortOrder
   }
 
@@ -6202,6 +6257,7 @@ export namespace Prisma {
     endTime?: SortOrder
     soNumber?: SortOrder
     userId?: SortOrder
+    status?: SortOrder
     vehicleId?: SortOrder
   }
 
@@ -6223,6 +6279,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -6295,25 +6361,11 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type VehicleCreateNestedManyWithoutUserInput = {
-    create?: XOR<VehicleCreateWithoutUserInput, VehicleUncheckedCreateWithoutUserInput> | VehicleCreateWithoutUserInput[] | VehicleUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VehicleCreateOrConnectWithoutUserInput | VehicleCreateOrConnectWithoutUserInput[]
-    createMany?: VehicleCreateManyUserInputEnvelope
-    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-  }
-
   export type TripCreateNestedManyWithoutUserInput = {
     create?: XOR<TripCreateWithoutUserInput, TripUncheckedCreateWithoutUserInput> | TripCreateWithoutUserInput[] | TripUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TripCreateOrConnectWithoutUserInput | TripCreateOrConnectWithoutUserInput[]
     createMany?: TripCreateManyUserInputEnvelope
     connect?: TripWhereUniqueInput | TripWhereUniqueInput[]
-  }
-
-  export type VehicleUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<VehicleCreateWithoutUserInput, VehicleUncheckedCreateWithoutUserInput> | VehicleCreateWithoutUserInput[] | VehicleUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VehicleCreateOrConnectWithoutUserInput | VehicleCreateOrConnectWithoutUserInput[]
-    createMany?: VehicleCreateManyUserInputEnvelope
-    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
   }
 
   export type TripUncheckedCreateNestedManyWithoutUserInput = {
@@ -6331,22 +6383,12 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
   }
 
-  export type VehicleUpdateManyWithoutUserNestedInput = {
-    create?: XOR<VehicleCreateWithoutUserInput, VehicleUncheckedCreateWithoutUserInput> | VehicleCreateWithoutUserInput[] | VehicleUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VehicleCreateOrConnectWithoutUserInput | VehicleCreateOrConnectWithoutUserInput[]
-    upsert?: VehicleUpsertWithWhereUniqueWithoutUserInput | VehicleUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: VehicleCreateManyUserInputEnvelope
-    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    update?: VehicleUpdateWithWhereUniqueWithoutUserInput | VehicleUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: VehicleUpdateManyWithWhereWithoutUserInput | VehicleUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type TripUpdateManyWithoutUserNestedInput = {
@@ -6371,20 +6413,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type VehicleUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<VehicleCreateWithoutUserInput, VehicleUncheckedCreateWithoutUserInput> | VehicleCreateWithoutUserInput[] | VehicleUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: VehicleCreateOrConnectWithoutUserInput | VehicleCreateOrConnectWithoutUserInput[]
-    upsert?: VehicleUpsertWithWhereUniqueWithoutUserInput | VehicleUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: VehicleCreateManyUserInputEnvelope
-    set?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    disconnect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    delete?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    connect?: VehicleWhereUniqueInput | VehicleWhereUniqueInput[]
-    update?: VehicleUpdateWithWhereUniqueWithoutUserInput | VehicleUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: VehicleUpdateManyWithWhereWithoutUserInput | VehicleUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
-  }
-
   export type TripUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TripCreateWithoutUserInput, TripUncheckedCreateWithoutUserInput> | TripCreateWithoutUserInput[] | TripUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TripCreateOrConnectWithoutUserInput | TripCreateOrConnectWithoutUserInput[]
@@ -6399,12 +6427,6 @@ export namespace Prisma {
     deleteMany?: TripScalarWhereInput | TripScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutVehiclesInput = {
-    create?: XOR<UserCreateWithoutVehiclesInput, UserUncheckedCreateWithoutVehiclesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutVehiclesInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type TripCreateNestedManyWithoutVehicleInput = {
     create?: XOR<TripCreateWithoutVehicleInput, TripUncheckedCreateWithoutVehicleInput> | TripCreateWithoutVehicleInput[] | TripUncheckedCreateWithoutVehicleInput[]
     connectOrCreate?: TripCreateOrConnectWithoutVehicleInput | TripCreateOrConnectWithoutVehicleInput[]
@@ -6417,14 +6439,6 @@ export namespace Prisma {
     connectOrCreate?: TripCreateOrConnectWithoutVehicleInput | TripCreateOrConnectWithoutVehicleInput[]
     createMany?: TripCreateManyVehicleInputEnvelope
     connect?: TripWhereUniqueInput | TripWhereUniqueInput[]
-  }
-
-  export type UserUpdateOneRequiredWithoutVehiclesNestedInput = {
-    create?: XOR<UserCreateWithoutVehiclesInput, UserUncheckedCreateWithoutVehiclesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutVehiclesInput
-    upsert?: UserUpsertWithoutVehiclesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutVehiclesInput, UserUpdateWithoutVehiclesInput>, UserUncheckedUpdateWithoutVehiclesInput>
   }
 
   export type TripUpdateManyWithoutVehicleNestedInput = {
@@ -6483,6 +6497,10 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
   }
 
   export type UserUpdateOneRequiredWithoutTripsNestedInput = {
@@ -6592,6 +6610,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[]
+    notIn?: $Enums.Role[]
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6677,6 +6702,16 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[]
+    notIn?: $Enums.Role[]
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6702,6 +6737,13 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -6714,6 +6756,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -6732,37 +6784,11 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type VehicleCreateWithoutUserInput = {
-    platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
-    trips?: TripCreateNestedManyWithoutVehicleInput
-  }
-
-  export type VehicleUncheckedCreateWithoutUserInput = {
-    id?: number
-    platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
-    trips?: TripUncheckedCreateNestedManyWithoutVehicleInput
-  }
-
-  export type VehicleCreateOrConnectWithoutUserInput = {
-    where: VehicleWhereUniqueInput
-    create: XOR<VehicleCreateWithoutUserInput, VehicleUncheckedCreateWithoutUserInput>
-  }
-
-  export type VehicleCreateManyUserInputEnvelope = {
-    data: VehicleCreateManyUserInput | VehicleCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type TripCreateWithoutUserInput = {
     startTime?: Date | string
     endTime?: Date | string | null
     soNumber?: string | null
+    status?: $Enums.Status
     location?: LocationCreateNestedManyWithoutTripInput
     vehicle: VehicleCreateNestedOneWithoutTripsInput
   }
@@ -6772,6 +6798,7 @@ export namespace Prisma {
     startTime?: Date | string
     endTime?: Date | string | null
     soNumber?: string | null
+    status?: $Enums.Status
     vehicleId: number
     location?: LocationUncheckedCreateNestedManyWithoutTripInput
   }
@@ -6784,34 +6811,6 @@ export namespace Prisma {
   export type TripCreateManyUserInputEnvelope = {
     data: TripCreateManyUserInput | TripCreateManyUserInput[]
     skipDuplicates?: boolean
-  }
-
-  export type VehicleUpsertWithWhereUniqueWithoutUserInput = {
-    where: VehicleWhereUniqueInput
-    update: XOR<VehicleUpdateWithoutUserInput, VehicleUncheckedUpdateWithoutUserInput>
-    create: XOR<VehicleCreateWithoutUserInput, VehicleUncheckedCreateWithoutUserInput>
-  }
-
-  export type VehicleUpdateWithWhereUniqueWithoutUserInput = {
-    where: VehicleWhereUniqueInput
-    data: XOR<VehicleUpdateWithoutUserInput, VehicleUncheckedUpdateWithoutUserInput>
-  }
-
-  export type VehicleUpdateManyWithWhereWithoutUserInput = {
-    where: VehicleScalarWhereInput
-    data: XOR<VehicleUpdateManyMutationInput, VehicleUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type VehicleScalarWhereInput = {
-    AND?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
-    OR?: VehicleScalarWhereInput[]
-    NOT?: VehicleScalarWhereInput | VehicleScalarWhereInput[]
-    id?: IntFilter<"Vehicle"> | number
-    platNumber?: StringFilter<"Vehicle"> | string
-    brand?: StringNullableFilter<"Vehicle"> | string | null
-    company?: StringNullableFilter<"Vehicle"> | string | null
-    type?: StringNullableFilter<"Vehicle"> | string | null
-    userId?: IntFilter<"Vehicle"> | number
   }
 
   export type TripUpsertWithWhereUniqueWithoutUserInput = {
@@ -6839,39 +6838,15 @@ export namespace Prisma {
     endTime?: DateTimeNullableFilter<"Trip"> | Date | string | null
     soNumber?: StringNullableFilter<"Trip"> | string | null
     userId?: IntFilter<"Trip"> | number
+    status?: EnumStatusFilter<"Trip"> | $Enums.Status
     vehicleId?: IntFilter<"Trip"> | number
-  }
-
-  export type UserCreateWithoutVehiclesInput = {
-    username: string
-    password: string
-    phone?: string | null
-    email?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trips?: TripCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutVehiclesInput = {
-    id?: number
-    username: string
-    password: string
-    phone?: string | null
-    email?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    trips?: TripUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutVehiclesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutVehiclesInput, UserUncheckedCreateWithoutVehiclesInput>
   }
 
   export type TripCreateWithoutVehicleInput = {
     startTime?: Date | string
     endTime?: Date | string | null
     soNumber?: string | null
+    status?: $Enums.Status
     user: UserCreateNestedOneWithoutTripsInput
     location?: LocationCreateNestedManyWithoutTripInput
   }
@@ -6882,6 +6857,7 @@ export namespace Prisma {
     endTime?: Date | string | null
     soNumber?: string | null
     userId: number
+    status?: $Enums.Status
     location?: LocationUncheckedCreateNestedManyWithoutTripInput
   }
 
@@ -6893,38 +6869,6 @@ export namespace Prisma {
   export type TripCreateManyVehicleInputEnvelope = {
     data: TripCreateManyVehicleInput | TripCreateManyVehicleInput[]
     skipDuplicates?: boolean
-  }
-
-  export type UserUpsertWithoutVehiclesInput = {
-    update: XOR<UserUpdateWithoutVehiclesInput, UserUncheckedUpdateWithoutVehiclesInput>
-    create: XOR<UserCreateWithoutVehiclesInput, UserUncheckedCreateWithoutVehiclesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutVehiclesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutVehiclesInput, UserUncheckedUpdateWithoutVehiclesInput>
-  }
-
-  export type UserUpdateWithoutVehiclesInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trips?: TripUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutVehiclesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    trips?: TripUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TripUpsertWithWhereUniqueWithoutVehicleInput = {
@@ -6948,9 +6892,10 @@ export namespace Prisma {
     password: string
     phone?: string | null
     email?: string | null
+    role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
-    vehicles?: VehicleCreateNestedManyWithoutUserInput
+    company?: string | null
   }
 
   export type UserUncheckedCreateWithoutTripsInput = {
@@ -6959,9 +6904,10 @@ export namespace Prisma {
     password: string
     phone?: string | null
     email?: string | null
+    role?: $Enums.Role
     createdAt?: Date | string
     updatedAt?: Date | string
-    vehicles?: VehicleUncheckedCreateNestedManyWithoutUserInput
+    company?: string | null
   }
 
   export type UserCreateOrConnectWithoutTripsInput = {
@@ -6997,7 +6943,6 @@ export namespace Prisma {
     brand?: string | null
     company?: string | null
     type?: string | null
-    user: UserCreateNestedOneWithoutVehiclesInput
   }
 
   export type VehicleUncheckedCreateWithoutTripsInput = {
@@ -7006,7 +6951,6 @@ export namespace Prisma {
     brand?: string | null
     company?: string | null
     type?: string | null
-    userId: number
   }
 
   export type VehicleCreateOrConnectWithoutTripsInput = {
@@ -7030,9 +6974,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    vehicles?: VehicleUpdateManyWithoutUserNestedInput
+    company?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateWithoutTripsInput = {
@@ -7041,9 +6986,10 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    vehicles?: VehicleUncheckedUpdateManyWithoutUserNestedInput
+    company?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationUpsertWithWhereUniqueWithoutTripInput = {
@@ -7089,7 +7035,6 @@ export namespace Prisma {
     brand?: NullableStringFieldUpdateOperationsInput | string | null
     company?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutVehiclesNestedInput
   }
 
   export type VehicleUncheckedUpdateWithoutTripsInput = {
@@ -7098,13 +7043,13 @@ export namespace Prisma {
     brand?: NullableStringFieldUpdateOperationsInput | string | null
     company?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TripCreateWithoutLocationInput = {
     startTime?: Date | string
     endTime?: Date | string | null
     soNumber?: string | null
+    status?: $Enums.Status
     user: UserCreateNestedOneWithoutTripsInput
     vehicle: VehicleCreateNestedOneWithoutTripsInput
   }
@@ -7115,6 +7060,7 @@ export namespace Prisma {
     endTime?: Date | string | null
     soNumber?: string | null
     userId: number
+    status?: $Enums.Status
     vehicleId: number
   }
 
@@ -7138,6 +7084,7 @@ export namespace Prisma {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     user?: UserUpdateOneRequiredWithoutTripsNestedInput
     vehicle?: VehicleUpdateOneRequiredWithoutTripsNestedInput
   }
@@ -7148,15 +7095,8 @@ export namespace Prisma {
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     vehicleId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type VehicleCreateManyUserInput = {
-    id?: number
-    platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
   }
 
   export type TripCreateManyUserInput = {
@@ -7164,38 +7104,15 @@ export namespace Prisma {
     startTime?: Date | string
     endTime?: Date | string | null
     soNumber?: string | null
+    status?: $Enums.Status
     vehicleId: number
-  }
-
-  export type VehicleUpdateWithoutUserInput = {
-    platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    trips?: TripUpdateManyWithoutVehicleNestedInput
-  }
-
-  export type VehicleUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    trips?: TripUncheckedUpdateManyWithoutVehicleNestedInput
-  }
-
-  export type VehicleUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TripUpdateWithoutUserInput = {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     location?: LocationUpdateManyWithoutTripNestedInput
     vehicle?: VehicleUpdateOneRequiredWithoutTripsNestedInput
   }
@@ -7205,6 +7122,7 @@ export namespace Prisma {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     vehicleId?: IntFieldUpdateOperationsInput | number
     location?: LocationUncheckedUpdateManyWithoutTripNestedInput
   }
@@ -7214,6 +7132,7 @@ export namespace Prisma {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     vehicleId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -7223,12 +7142,14 @@ export namespace Prisma {
     endTime?: Date | string | null
     soNumber?: string | null
     userId: number
+    status?: $Enums.Status
   }
 
   export type TripUpdateWithoutVehicleInput = {
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     user?: UserUpdateOneRequiredWithoutTripsNestedInput
     location?: LocationUpdateManyWithoutTripNestedInput
   }
@@ -7239,6 +7160,7 @@ export namespace Prisma {
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     location?: LocationUncheckedUpdateManyWithoutTripNestedInput
   }
 
@@ -7248,6 +7170,7 @@ export namespace Prisma {
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     soNumber?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
   }
 
   export type LocationCreateManyTripInput = {

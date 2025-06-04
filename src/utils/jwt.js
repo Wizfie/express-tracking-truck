@@ -1,9 +1,11 @@
 import jwt from "jsonwebtoken";
 
-const generateToken = (userId, username) => {
+const generateToken = (userId, username, role, company) => {
   const payload = {
     userId,
     username,
+    role,
+    company,
   };
 
   return jwt.sign(payload, process.env.JWT_SECRET, {
@@ -33,7 +35,9 @@ const clearBlackList = () => {
 };
 
 const verifyAuth = (req, res, next) => {
-  const token = req.header("Authorization")?.split(" ")[1];
+  // Ambil token dari cookie jika ada
+  const token =
+    req.cookies.authToken || req.header("Authorization")?.split(" ")[1];
   if (!token) {
     return res.status(403).send("Token not provided");
   }

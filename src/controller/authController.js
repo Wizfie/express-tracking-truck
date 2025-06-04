@@ -2,14 +2,19 @@ import { blacklistToken, verifyToken } from "../utils/jwt.js";
 import AuthService from "../services/authServices.js";
 class AuthController {
   static async register(req, res) {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
 
     try {
-      const { user } = await AuthService.registerUser({ username, password });
+      const { user } = await AuthService.registerUser({
+        username,
+        password,
+        role,
+      });
       res.status(201).json({
         message: "Pendaftaran Berhasil",
         user: {
           username: user.username,
+          role: user.role,
         },
       });
     } catch (error) {
@@ -40,6 +45,8 @@ class AuthController {
         user: {
           id: user.id,
           username: user.username,
+          role: user.role,
+          company: user.company,
         },
       });
     } catch (error) {
@@ -59,9 +66,15 @@ class AuthController {
     if (!decoded) {
       return res.status(401).json({ valid: false, user: null });
     }
+
     res.status(200).json({
       valid: true,
-      user: { id: decoded.userId, username: decoded.username },
+      user: {
+        id: decoded.userId,
+        username: decoded.username,
+        role: decoded.role,
+        company: decoded.company,
+      },
     });
   }
 

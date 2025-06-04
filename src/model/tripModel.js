@@ -10,6 +10,7 @@ class TripModel {
           userId: trip.userId,
           vehicleId: trip.vehicleId,
           startTime: new Date(),
+          status: "ACTIVE", // pastikan status diisi saat start trip
         },
       });
       return newTrip;
@@ -24,6 +25,7 @@ class TripModel {
         where: { id: tripId },
         data: {
           endTime: new Date(),
+          status: "FINISH",
         },
       });
       return updatedTrip;
@@ -33,6 +35,7 @@ class TripModel {
   }
 
   static async getTripById(tripId) {
+    if (!tripId) throw new Error("tripId is required");
     try {
       const trip = await prisma.trip.findUnique({
         where: { id: tripId },
@@ -51,10 +54,16 @@ class TripModel {
       throw new Error("Failed to get all trips" + error.message);
     }
   }
-  static async getTripsByUserId(userId) {
+  static async getTripsByUserId(userId, filterActive = false) {
     try {
+      const where = { userId: parseInt(userId) };
+      if (filterActive) {
+        where.status = "ACTIVE";
+        where.endTime = null;
+      }
       const trips = await prisma.trip.findMany({
-        where: { userId: userId },
+        where,
+        include: { vehicle: true },
       });
       return trips;
     } catch (error) {
@@ -70,6 +79,23 @@ class TripModel {
       return trips;
     } catch (error) {
       throw new Error("Failed to get trips by vehicle ID" + error.message);
+    }
+  }
+
+  static async getActiveTripByUserId(userId) {
+    try {
+      const trip = await prisma.trip.findFirst({
+        where: {
+          userId: userId,
+          endTime: null,
+          status: "ACTIVE",
+        },
+        orderBy: { startTime: "desc" },
+        include: { vehicle: true },
+      });
+      return trip;
+    } catch (error) {
+      throw new Error("Failed to get active trip by user ID: " + error.message);
     }
   }
 }

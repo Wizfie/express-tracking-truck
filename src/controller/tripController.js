@@ -62,8 +62,9 @@ class TripController {
 
   static async getTripsByUserId(req, res) {
     const userId = req.params.userId;
+    const filterActive = req.query.active === "true";
     try {
-      const trips = await TripService.getTripsByUserId(userId);
+      const trips = await TripService.getTripsByUserId(userId, filterActive);
       res.status(200).json({
         message: "Trips fetched successfully",
         trips: trips,
@@ -87,6 +88,22 @@ class TripController {
       res.status(400).json({
         error: error.message,
       });
+    }
+  }
+
+  static async getActiveTripByUserId(req, res) {
+    const userId = req.query.userId;
+    if (!userId) {
+      return res.status(400).json({ error: "userId is required" });
+    }
+    try {
+      const trip = await TripService.getActiveTripByUserId(userId);
+      res.status(200).json({
+        message: "Active trip fetched successfully",
+        trip: trip,
+      });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
     }
   }
 }

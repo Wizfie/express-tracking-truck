@@ -11,6 +11,7 @@ class TripRoutes {
     router.get("/:id", TripController.getTripById);
     router.get("/user/:userId", TripController.getTripsByUserId);
     router.get("/vehicle/:vehicleId", TripController.getTripsByVehicleId);
+    router.get("/active", TripController.getActiveTripByUserId);
 
     return router;
   }

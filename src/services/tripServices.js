@@ -36,9 +36,9 @@ class TripService {
     }
   }
 
-  static async getTripsByUserId(userId) {
+  static async getTripsByUserId(userId, filterActive = false) {
     try {
-      const trips = await TripModel.getTripsByUserId(userId);
+      const trips = await TripModel.getTripsByUserId(userId, filterActive);
       return trips;
     } catch (error) {
       throw new Error("Failed to get trips by user ID" + error.message);
@@ -51,6 +51,16 @@ class TripService {
       return trips;
     } catch (error) {
       throw new Error("Failed to get trips by vehicle ID" + error.message);
+    }
+  }
+
+  static async getActiveTripByUserId(userId) {
+    try {
+      const trip = await TripModel.getActiveTripByUserId(userId);
+
+      return trip;
+    } catch (error) {
+      throw new Error("Failed to get active trip by user ID: " + error.message);
     }
   }
 }
