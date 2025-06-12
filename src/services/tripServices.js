@@ -27,12 +27,11 @@ class TripService {
     }
   }
 
-  static async getAllTrips() {
+  static async getTrips(params = {}) {
     try {
-      const trips = await TripModel.getAllTrips();
-      return trips;
+      return await TripModel.getTrips(params);
     } catch (error) {
-      throw new Error("Failed to get all trips" + error.message);
+      throw new Error("Failed to get trips: " + error.message);
     }
   }
 

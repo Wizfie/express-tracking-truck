@@ -155,7 +155,10 @@ exports.Prisma.LocationScalarFieldEnum = {
   latitude: 'latitude',
   longitude: 'longitude',
   timeStamp: 'timeStamp',
-  tripId: 'tripId'
+  tripId: 'tripId',
+  streetName: 'streetName',
+  city: 'city',
+  state: 'state'
 };
 
 exports.Prisma.SortOrder = {
@@ -185,6 +188,12 @@ exports.Prisma.VehicleOrderByRelevanceFieldEnum = {
 
 exports.Prisma.TripOrderByRelevanceFieldEnum = {
   soNumber: 'soNumber'
+};
+
+exports.Prisma.LocationOrderByRelevanceFieldEnum = {
+  streetName: 'streetName',
+  city: 'city',
+  state: 'state'
 };
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',

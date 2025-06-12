@@ -35,7 +35,7 @@ class TripModel {
   }
 
   static async getTripById(tripId) {
-    if (!tripId) throw new Error("tripId is required");
+    if (!tripId && tripId !== 0) throw new Error("tripId is required");
     try {
       const trip = await prisma.trip.findUnique({
         where: { id: tripId },
@@ -46,14 +46,57 @@ class TripModel {
     }
   }
 
-  static async getAllTrips() {
+  static async getTrips({
+    page = 1,
+    limit = 10,
+    search = "",
+    sortBy = "startTime",
+    sortOrder = "desc",
+    status = null,
+  } = {}) {
     try {
-      const trips = await prisma.trip.findMany();
-      return trips;
+      const skip = (page - 1) * limit;
+      let where = {};
+      if (status) {
+        where.status = status;
+      }
+      if (search) {
+        where = {
+          ...where,
+          OR: [
+            { vehicle: { company: { contains: search } } },
+            { vehicle: { platNumber: { contains: search } } },
+            { user: { username: { contains: search } } },
+          ],
+        };
+      }
+      // Tentukan orderBy
+      let orderBy = { startTime: sortOrder };
+      if (sortBy === "company") {
+        orderBy = { vehicle: { company: sortOrder } };
+      } else if (sortBy === "username") {
+        orderBy = { user: { username: sortOrder } };
+      } else if (sortBy === "platNumber") {
+        orderBy = { vehicle: { platNumber: sortOrder } };
+      } else if (sortBy !== "startTime") {
+        orderBy = { [sortBy]: sortOrder };
+      }
+      const [trips, total] = await Promise.all([
+        prisma.trip.findMany({
+          where,
+          include: { vehicle: true, user: true },
+          skip,
+          take: limit,
+          orderBy,
+        }),
+        prisma.trip.count({ where }),
+      ]);
+      return { trips, total };
     } catch (error) {
-      throw new Error("Failed to get all trips" + error.message);
+      throw new Error(`MODEL : ${error}`);
     }
   }
+
   static async getTripsByUserId(userId, filterActive = false) {
     try {
       const where = { userId: parseInt(userId) };
@@ -63,7 +106,10 @@ class TripModel {
       }
       const trips = await prisma.trip.findMany({
         where,
-        include: { vehicle: true },
+        include: {
+          vehicle: true,
+          user: true,
+        },
       });
       return trips;
     } catch (error) {

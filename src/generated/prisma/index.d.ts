@@ -2432,9 +2432,9 @@ export namespace Prisma {
   export type VehicleGroupByOutputType = {
     id: number
     platNumber: string
-    brand: string | null
-    company: string | null
-    type: string | null
+    brand: string
+    company: string
+    type: string
     _count: VehicleCountAggregateOutputType | null
     _avg: VehicleAvgAggregateOutputType | null
     _sum: VehicleSumAggregateOutputType | null
@@ -2490,9 +2490,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       platNumber: string
-      brand: string | null
-      company: string | null
-      type: string | null
+      brand: string
+      company: string
+      type: string
     }, ExtArgs["result"]["vehicle"]>
     composites: {}
   }
@@ -4312,6 +4312,9 @@ export namespace Prisma {
     longitude: number | null
     timeStamp: Date | null
     tripId: number | null
+    streetName: string | null
+    city: string | null
+    state: string | null
   }
 
   export type LocationMaxAggregateOutputType = {
@@ -4320,6 +4323,9 @@ export namespace Prisma {
     longitude: number | null
     timeStamp: Date | null
     tripId: number | null
+    streetName: string | null
+    city: string | null
+    state: string | null
   }
 
   export type LocationCountAggregateOutputType = {
@@ -4328,6 +4334,9 @@ export namespace Prisma {
     longitude: number
     timeStamp: number
     tripId: number
+    streetName: number
+    city: number
+    state: number
     _all: number
   }
 
@@ -4352,6 +4361,9 @@ export namespace Prisma {
     longitude?: true
     timeStamp?: true
     tripId?: true
+    streetName?: true
+    city?: true
+    state?: true
   }
 
   export type LocationMaxAggregateInputType = {
@@ -4360,6 +4372,9 @@ export namespace Prisma {
     longitude?: true
     timeStamp?: true
     tripId?: true
+    streetName?: true
+    city?: true
+    state?: true
   }
 
   export type LocationCountAggregateInputType = {
@@ -4368,6 +4383,9 @@ export namespace Prisma {
     longitude?: true
     timeStamp?: true
     tripId?: true
+    streetName?: true
+    city?: true
+    state?: true
     _all?: true
   }
 
@@ -4463,6 +4481,9 @@ export namespace Prisma {
     longitude: number
     timeStamp: Date
     tripId: number
+    streetName: string | null
+    city: string | null
+    state: string | null
     _count: LocationCountAggregateOutputType | null
     _avg: LocationAvgAggregateOutputType | null
     _sum: LocationSumAggregateOutputType | null
@@ -4490,6 +4511,9 @@ export namespace Prisma {
     longitude?: boolean
     timeStamp?: boolean
     tripId?: boolean
+    streetName?: boolean
+    city?: boolean
+    state?: boolean
     trip?: boolean | TripDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["location"]>
 
@@ -4501,9 +4525,12 @@ export namespace Prisma {
     longitude?: boolean
     timeStamp?: boolean
     tripId?: boolean
+    streetName?: boolean
+    city?: boolean
+    state?: boolean
   }
 
-  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "latitude" | "longitude" | "timeStamp" | "tripId", ExtArgs["result"]["location"]>
+  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "latitude" | "longitude" | "timeStamp" | "tripId" | "streetName" | "city" | "state", ExtArgs["result"]["location"]>
   export type LocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     trip?: boolean | TripDefaultArgs<ExtArgs>
   }
@@ -4519,6 +4546,9 @@ export namespace Prisma {
       longitude: number
       timeStamp: Date
       tripId: number
+      streetName: string | null
+      city: string | null
+      state: string | null
     }, ExtArgs["result"]["location"]>
     composites: {}
   }
@@ -4894,6 +4924,9 @@ export namespace Prisma {
     readonly longitude: FieldRef<"Location", 'Float'>
     readonly timeStamp: FieldRef<"Location", 'DateTime'>
     readonly tripId: FieldRef<"Location", 'Int'>
+    readonly streetName: FieldRef<"Location", 'String'>
+    readonly city: FieldRef<"Location", 'String'>
+    readonly state: FieldRef<"Location", 'String'>
   }
     
 
@@ -5313,7 +5346,10 @@ export namespace Prisma {
     latitude: 'latitude',
     longitude: 'longitude',
     timeStamp: 'timeStamp',
-    tripId: 'tripId'
+    tripId: 'tripId',
+    streetName: 'streetName',
+    city: 'city',
+    state: 'state'
   };
 
   export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
@@ -5361,6 +5397,15 @@ export namespace Prisma {
   };
 
   export type TripOrderByRelevanceFieldEnum = (typeof TripOrderByRelevanceFieldEnum)[keyof typeof TripOrderByRelevanceFieldEnum]
+
+
+  export const LocationOrderByRelevanceFieldEnum: {
+    streetName: 'streetName',
+    city: 'city',
+    state: 'state'
+  };
+
+  export type LocationOrderByRelevanceFieldEnum = (typeof LocationOrderByRelevanceFieldEnum)[keyof typeof LocationOrderByRelevanceFieldEnum]
 
 
   /**
@@ -5497,18 +5542,18 @@ export namespace Prisma {
     NOT?: VehicleWhereInput | VehicleWhereInput[]
     id?: IntFilter<"Vehicle"> | number
     platNumber?: StringFilter<"Vehicle"> | string
-    brand?: StringNullableFilter<"Vehicle"> | string | null
-    company?: StringNullableFilter<"Vehicle"> | string | null
-    type?: StringNullableFilter<"Vehicle"> | string | null
+    brand?: StringFilter<"Vehicle"> | string
+    company?: StringFilter<"Vehicle"> | string
+    type?: StringFilter<"Vehicle"> | string
     trips?: TripListRelationFilter
   }
 
   export type VehicleOrderByWithRelationInput = {
     id?: SortOrder
     platNumber?: SortOrder
-    brand?: SortOrderInput | SortOrder
-    company?: SortOrderInput | SortOrder
-    type?: SortOrderInput | SortOrder
+    brand?: SortOrder
+    company?: SortOrder
+    type?: SortOrder
     trips?: TripOrderByRelationAggregateInput
     _relevance?: VehicleOrderByRelevanceInput
   }
@@ -5519,18 +5564,18 @@ export namespace Prisma {
     AND?: VehicleWhereInput | VehicleWhereInput[]
     OR?: VehicleWhereInput[]
     NOT?: VehicleWhereInput | VehicleWhereInput[]
-    brand?: StringNullableFilter<"Vehicle"> | string | null
-    company?: StringNullableFilter<"Vehicle"> | string | null
-    type?: StringNullableFilter<"Vehicle"> | string | null
+    brand?: StringFilter<"Vehicle"> | string
+    company?: StringFilter<"Vehicle"> | string
+    type?: StringFilter<"Vehicle"> | string
     trips?: TripListRelationFilter
   }, "id" | "platNumber">
 
   export type VehicleOrderByWithAggregationInput = {
     id?: SortOrder
     platNumber?: SortOrder
-    brand?: SortOrderInput | SortOrder
-    company?: SortOrderInput | SortOrder
-    type?: SortOrderInput | SortOrder
+    brand?: SortOrder
+    company?: SortOrder
+    type?: SortOrder
     _count?: VehicleCountOrderByAggregateInput
     _avg?: VehicleAvgOrderByAggregateInput
     _max?: VehicleMaxOrderByAggregateInput
@@ -5544,9 +5589,9 @@ export namespace Prisma {
     NOT?: VehicleScalarWhereWithAggregatesInput | VehicleScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Vehicle"> | number
     platNumber?: StringWithAggregatesFilter<"Vehicle"> | string
-    brand?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
-    company?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
-    type?: StringNullableWithAggregatesFilter<"Vehicle"> | string | null
+    brand?: StringWithAggregatesFilter<"Vehicle"> | string
+    company?: StringWithAggregatesFilter<"Vehicle"> | string
+    type?: StringWithAggregatesFilter<"Vehicle"> | string
   }
 
   export type TripWhereInput = {
@@ -5632,6 +5677,9 @@ export namespace Prisma {
     longitude?: FloatFilter<"Location"> | number
     timeStamp?: DateTimeFilter<"Location"> | Date | string
     tripId?: IntFilter<"Location"> | number
+    streetName?: StringNullableFilter<"Location"> | string | null
+    city?: StringNullableFilter<"Location"> | string | null
+    state?: StringNullableFilter<"Location"> | string | null
     trip?: XOR<TripScalarRelationFilter, TripWhereInput>
   }
 
@@ -5641,7 +5689,11 @@ export namespace Prisma {
     longitude?: SortOrder
     timeStamp?: SortOrder
     tripId?: SortOrder
+    streetName?: SortOrderInput | SortOrder
+    city?: SortOrderInput | SortOrder
+    state?: SortOrderInput | SortOrder
     trip?: TripOrderByWithRelationInput
+    _relevance?: LocationOrderByRelevanceInput
   }
 
   export type LocationWhereUniqueInput = Prisma.AtLeast<{
@@ -5653,6 +5705,9 @@ export namespace Prisma {
     longitude?: FloatFilter<"Location"> | number
     timeStamp?: DateTimeFilter<"Location"> | Date | string
     tripId?: IntFilter<"Location"> | number
+    streetName?: StringNullableFilter<"Location"> | string | null
+    city?: StringNullableFilter<"Location"> | string | null
+    state?: StringNullableFilter<"Location"> | string | null
     trip?: XOR<TripScalarRelationFilter, TripWhereInput>
   }, "id">
 
@@ -5662,6 +5717,9 @@ export namespace Prisma {
     longitude?: SortOrder
     timeStamp?: SortOrder
     tripId?: SortOrder
+    streetName?: SortOrderInput | SortOrder
+    city?: SortOrderInput | SortOrder
+    state?: SortOrderInput | SortOrder
     _count?: LocationCountOrderByAggregateInput
     _avg?: LocationAvgOrderByAggregateInput
     _max?: LocationMaxOrderByAggregateInput
@@ -5678,6 +5736,9 @@ export namespace Prisma {
     longitude?: FloatWithAggregatesFilter<"Location"> | number
     timeStamp?: DateTimeWithAggregatesFilter<"Location"> | Date | string
     tripId?: IntWithAggregatesFilter<"Location"> | number
+    streetName?: StringNullableWithAggregatesFilter<"Location"> | string | null
+    city?: StringNullableWithAggregatesFilter<"Location"> | string | null
+    state?: StringNullableWithAggregatesFilter<"Location"> | string | null
   }
 
   export type UserCreateInput = {
@@ -5767,59 +5828,59 @@ export namespace Prisma {
 
   export type VehicleCreateInput = {
     platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
+    brand: string
+    company: string
+    type: string
     trips?: TripCreateNestedManyWithoutVehicleInput
   }
 
   export type VehicleUncheckedCreateInput = {
     id?: number
     platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
+    brand: string
+    company: string
+    type: string
     trips?: TripUncheckedCreateNestedManyWithoutVehicleInput
   }
 
   export type VehicleUpdateInput = {
     platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     trips?: TripUpdateManyWithoutVehicleNestedInput
   }
 
   export type VehicleUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     trips?: TripUncheckedUpdateManyWithoutVehicleNestedInput
   }
 
   export type VehicleCreateManyInput = {
     id?: number
     platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
+    brand: string
+    company: string
+    type: string
   }
 
   export type VehicleUpdateManyMutationInput = {
     platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type VehicleUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type TripCreateInput = {
@@ -5895,6 +5956,9 @@ export namespace Prisma {
     latitude: number
     longitude: number
     timeStamp?: Date | string
+    streetName?: string | null
+    city?: string | null
+    state?: string | null
     trip: TripCreateNestedOneWithoutLocationInput
   }
 
@@ -5904,12 +5968,18 @@ export namespace Prisma {
     longitude: number
     timeStamp?: Date | string
     tripId: number
+    streetName?: string | null
+    city?: string | null
+    state?: string | null
   }
 
   export type LocationUpdateInput = {
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    streetName?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
     trip?: TripUpdateOneRequiredWithoutLocationNestedInput
   }
 
@@ -5919,6 +5989,9 @@ export namespace Prisma {
     longitude?: FloatFieldUpdateOperationsInput | number
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
     tripId?: IntFieldUpdateOperationsInput | number
+    streetName?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationCreateManyInput = {
@@ -5927,12 +6000,18 @@ export namespace Prisma {
     longitude: number
     timeStamp?: Date | string
     tripId: number
+    streetName?: string | null
+    city?: string | null
+    state?: string | null
   }
 
   export type LocationUpdateManyMutationInput = {
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    streetName?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationUncheckedUpdateManyInput = {
@@ -5941,6 +6020,9 @@ export namespace Prisma {
     longitude?: FloatFieldUpdateOperationsInput | number
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
     tripId?: IntFieldUpdateOperationsInput | number
+    streetName?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6307,12 +6389,21 @@ export namespace Prisma {
     isNot?: TripWhereInput
   }
 
+  export type LocationOrderByRelevanceInput = {
+    fields: LocationOrderByRelevanceFieldEnum | LocationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type LocationCountOrderByAggregateInput = {
     id?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
     timeStamp?: SortOrder
     tripId?: SortOrder
+    streetName?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
   }
 
   export type LocationAvgOrderByAggregateInput = {
@@ -6328,6 +6419,9 @@ export namespace Prisma {
     longitude?: SortOrder
     timeStamp?: SortOrder
     tripId?: SortOrder
+    streetName?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
   }
 
   export type LocationMinOrderByAggregateInput = {
@@ -6336,6 +6430,9 @@ export namespace Prisma {
     longitude?: SortOrder
     timeStamp?: SortOrder
     tripId?: SortOrder
+    streetName?: SortOrder
+    city?: SortOrder
+    state?: SortOrder
   }
 
   export type LocationSumOrderByAggregateInput = {
@@ -6919,6 +7016,9 @@ export namespace Prisma {
     latitude: number
     longitude: number
     timeStamp?: Date | string
+    streetName?: string | null
+    city?: string | null
+    state?: string | null
   }
 
   export type LocationUncheckedCreateWithoutTripInput = {
@@ -6926,6 +7026,9 @@ export namespace Prisma {
     latitude: number
     longitude: number
     timeStamp?: Date | string
+    streetName?: string | null
+    city?: string | null
+    state?: string | null
   }
 
   export type LocationCreateOrConnectWithoutTripInput = {
@@ -6940,17 +7043,17 @@ export namespace Prisma {
 
   export type VehicleCreateWithoutTripsInput = {
     platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
+    brand: string
+    company: string
+    type: string
   }
 
   export type VehicleUncheckedCreateWithoutTripsInput = {
     id?: number
     platNumber: string
-    brand?: string | null
-    company?: string | null
-    type?: string | null
+    brand: string
+    company: string
+    type: string
   }
 
   export type VehicleCreateOrConnectWithoutTripsInput = {
@@ -7017,6 +7120,9 @@ export namespace Prisma {
     longitude?: FloatFilter<"Location"> | number
     timeStamp?: DateTimeFilter<"Location"> | Date | string
     tripId?: IntFilter<"Location"> | number
+    streetName?: StringNullableFilter<"Location"> | string | null
+    city?: StringNullableFilter<"Location"> | string | null
+    state?: StringNullableFilter<"Location"> | string | null
   }
 
   export type VehicleUpsertWithoutTripsInput = {
@@ -7032,17 +7138,17 @@ export namespace Prisma {
 
   export type VehicleUpdateWithoutTripsInput = {
     platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type VehicleUncheckedUpdateWithoutTripsInput = {
     id?: IntFieldUpdateOperationsInput | number
     platNumber?: StringFieldUpdateOperationsInput | string
-    brand?: NullableStringFieldUpdateOperationsInput | string | null
-    company?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
+    brand?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type TripCreateWithoutLocationInput = {
@@ -7178,12 +7284,18 @@ export namespace Prisma {
     latitude: number
     longitude: number
     timeStamp?: Date | string
+    streetName?: string | null
+    city?: string | null
+    state?: string | null
   }
 
   export type LocationUpdateWithoutTripInput = {
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    streetName?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationUncheckedUpdateWithoutTripInput = {
@@ -7191,6 +7303,9 @@ export namespace Prisma {
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    streetName?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LocationUncheckedUpdateManyWithoutTripInput = {
@@ -7198,6 +7313,9 @@ export namespace Prisma {
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    streetName?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

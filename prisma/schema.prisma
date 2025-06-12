@@ -34,9 +34,9 @@ enum Status {
 model Vehicle {
   id            Int    @id @default(autoincrement())
   platNumber    String @unique
-  brand         String?
-  company       String?
-  type          String?
+  brand         String
+  company       String
+  type          String
   trips         Trip[]
 }
 
@@ -60,4 +60,7 @@ model Location {
   timeStamp  DateTime @default(now())
   tripId     Int
   trip       Trip     @relation(fields: [tripId], references: [id])
+  streetName String?  // Nama jalan hasil geocoding
+  city       String?  // Kota hasil geocoding
+  state      String?  // Provinsi hasil geocoding
 }

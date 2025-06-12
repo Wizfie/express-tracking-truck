@@ -46,12 +46,28 @@ class TripController {
     }
   }
 
-  static async getAllTrips(_req, res) {
+  static async getTrips(req, res) {
     try {
-      const trips = await TripService.getAllTrips();
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+      const search = req.query.search || "";
+      const sortBy = req.query.sortBy || "startTime";
+      const sortOrder = req.query.sortOrder || "desc";
+      const status = req.query.status || null;
+      const { trips, total } = await TripService.getTrips({
+        page,
+        limit,
+        search,
+        sortBy,
+        sortOrder,
+        status,
+      });
       res.status(200).json({
-        message: "All trips fetched successfully",
-        trips: trips,
+        message: "Trips fetched successfully",
+        trips,
+        total,
+        page,
+        totalPages: Math.ceil(total / limit),
       });
     } catch (error) {
       res.status(400).json({
