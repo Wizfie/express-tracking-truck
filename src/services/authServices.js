@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { createUser, findUserByUsername } from "../model/userModel.js";
+import UserModel from "../model/userModel.js";
 import { generateToken } from "../utils/jwt.js";
 
 class AuthService {
@@ -8,13 +8,13 @@ class AuthService {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const existingUser = await findUserByUsername(username);
+    const existingUser = await UserModel.findUserByUsername(username);
 
     if (existingUser) {
       throw new Error("Username sudah digunakan");
     }
 
-    const newUser = await createUser({
+    const newUser = await UserModel.createUser({
       username,
       password: hashedPassword,
       role,
@@ -28,7 +28,7 @@ class AuthService {
   static async loginUser(data) {
     const { username, password } = data;
 
-    const user = await findUserByUsername(username);
+    const user = await UserModel.findUserByUsername(username);
     if (!user) {
       throw new Error("Username atau password salah");
     }

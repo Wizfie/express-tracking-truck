@@ -161,6 +161,14 @@ exports.Prisma.LocationScalarFieldEnum = {
   state: 'state'
 };
 
+exports.Prisma.MessageScalarFieldEnum = {
+  id: 'id',
+  senderId: 'senderId',
+  receiverId: 'receiverId',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -195,6 +203,10 @@ exports.Prisma.LocationOrderByRelevanceFieldEnum = {
   city: 'city',
   state: 'state'
 };
+
+exports.Prisma.MessageOrderByRelevanceFieldEnum = {
+  content: 'content'
+};
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
   USER: 'USER'
@@ -209,7 +221,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Vehicle: 'Vehicle',
   Trip: 'Trip',
-  Location: 'Location'
+  Location: 'Location',
+  Message: 'Message'
 };
 
 /**

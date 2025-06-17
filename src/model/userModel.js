@@ -2,16 +2,25 @@ import { PrismaClient } from "../generated/prisma/client.js";
 
 const prisma = new PrismaClient();
 
-const createUser = async (userData) => {
-  return await prisma.user.create({
-    data: userData,
-  });
-};
-const findUserByUsername = async (username) => {
-  const user = await prisma.user.findUnique({
-    where: { username },
-  });
-  return user;
-};
+class UserModel {
+  static async createUser(userData) {
+    return await prisma.user.create({
+      data: userData,
+    });
+  }
 
-export { createUser, findUserByUsername };
+  static async findUserByUsername(username) {
+    const user = await prisma.user.findUnique({
+      where: { username },
+    });
+    return user;
+  }
+
+  static async getAllUsers() {
+    return await prisma.user.findMany({
+      select: { id: true, username: true, role: true },
+    });
+  }
+}
+
+export default UserModel;
