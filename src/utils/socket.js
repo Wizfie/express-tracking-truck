@@ -4,21 +4,23 @@ let ioInstance;
 const userSockets = {}; // To store socket IDs for each user
 
 export function setupSocket(server) {
+  // Setup Socket.IO with CORS configuration
   ioInstance = new Server(server, {
     cors: {
-      origin: ["http://localhost:5173"], // Adjust this to your frontend URL
-      credentials: true,
+      origin: "http://localhost:5173" || process.env.FRONTEND_URL, // Allow only the frontend domain
+      methods: ["GET", "POST"], // Allowed HTTP methods
+      credentials: true, // Allow cookies to be sent with WebSocket connections
     },
   });
 
   ioInstance.on("connection", (socket) => {
-    console.log("User connected:", socket.id);
+    console.log(`User connected: ${socket.id}`);
 
     // Register user socket with userId
     socket.on("register", (userId) => {
-      console.log("User registered with ID:", userId); // Log to see the registered user ID
       userSockets[userId] = socket.id; // Associate socket.id with the userId
       socket.userId = userId; // Store userId on the socket
+      console.log(`User registered: ${userId}`);
     });
 
     // Private message event
@@ -39,14 +41,6 @@ export function setupSocket(server) {
           }
         }, 5000); // Retry after 5 seconds
       }
-      console.log(
-        "Sending private message to:",
-        to,
-        "from:",
-        from,
-        "message:",
-        message
-      );
     });
 
     socket.on("disconnect", () => {
@@ -56,6 +50,9 @@ export function setupSocket(server) {
   });
 }
 
-export function getIO() {
+export function getIo() {
+  if (!ioInstance) {
+    throw new Error("Socket.io not initialized. Call setupSocket first.");
+  }
   return ioInstance;
 }

@@ -208,7 +208,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\MyLocal\\Project\\Expedition-tracking\\express\\src\\generated\\prisma",
+      "value": "D:\\Project\\2024\\Tracking-vehicle\\express-tracking-truck\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -222,7 +222,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\MyLocal\\Project\\Expedition-tracking\\express\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Project\\2024\\Tracking-vehicle\\express-tracking-truck\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -240,7 +240,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://root:@localhost:3306/db_vehicle_tracking"
+        "value": "mysql://root:root@localhost:3306/db_tracking_vehicle"
       }
     }
   },
